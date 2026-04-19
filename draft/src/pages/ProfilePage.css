@@ -1,0 +1,146 @@
+/* プロフィール編集画面 */
+
+.profile-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+/* プレビュー */
+.profile-preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.profile-avatar-lg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  transition: background-color var(--transition-base);
+}
+
+.profile-preview-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-preview-name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.profile-preview-email {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* セクション */
+.profile-section {
+  margin-bottom: var(--space-lg);
+}
+
+.profile-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+/* カラーグリッド */
+.profile-color-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: var(--space-sm);
+}
+
+.profile-color-option {
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 40px;
+  border-radius: var(--radius-md);
+  border: 3px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  margin: 0 auto;
+}
+
+.profile-color-option:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-color-option.selected {
+  border-color: var(--color-text);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* メッセージ */
+.profile-error {
+  color: var(--color-accent-red);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-md);
+}
+
+.profile-saved {
+  color: var(--color-confirmed);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-md);
+  animation: fadeIn 0.3s ease;
+}
+
+.profile-save-btn {
+  width: 100%;
+}
+
+.profile-save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 危険ゾーン */
+.profile-danger-zone {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.danger-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-accent-red);
+  margin-bottom: var(--space-sm);
+}
+
+.danger-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+/* レスポンシブ */
+@media (max-width: 767px) {
+  .profile-color-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

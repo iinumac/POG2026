@@ -1,0 +1,299 @@
+/* 結果発表画面スタイル */
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.result-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.result-round-badge {
+  font-size: var(--text-lg);
+  padding: 4px 14px;
+}
+
+.result-phase-label {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* 参加者グリッド */
+.result-grid {
+  margin-bottom: var(--space-2xl);
+}
+
+/* 管理者コントロール */
+.admin-controls {
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+.controls-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+}
+
+/* 指名状況プログレス */
+.nomination-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-section);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-sm);
+}
+
+.progress-label {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.progress-count {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.progress-complete {
+  color: var(--color-confirmed);
+  font-weight: 600;
+}
+
+.progress-waiting {
+  color: var(--color-pending);
+  font-weight: 500;
+  animation: pulse 2s ease infinite;
+}
+
+/* ヒントメッセージ */
+.control-hint {
+  width: 100%;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.controls-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* 競合表示 */
+.conflict-title {
+  width: 100%;
+  font-size: var(--text-base);
+  color: var(--color-accent-red);
+  margin-bottom: var(--space-sm);
+}
+
+.conflict-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: rgba(192, 57, 43, 0.05);
+  border: 1px solid rgba(192, 57, 43, 0.2);
+  border-radius: var(--radius-md);
+  width: 100%;
+}
+
+.conflict-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.conflict-horse {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.conflict-users {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+
+.conflict-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.manual-lottery {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.manual-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+/* 空状態 */
+.result-empty {
+  text-align: center;
+  padding: var(--space-3xl);
+  color: var(--color-text-muted);
+}
+
+/* 抽選モーダル */
+.lottery-info {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.lottery-horse-name {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.lottery-contestants {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+.lottery-result {
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.lottery-result-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.lottery-result-text {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+}
+
+/* レスポンシブ */
+@media (max-width: 767px) {
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .control-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ラウンド移行トランジション */
+.round-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 77, 43, 0.92);
+  backdrop-filter: blur(8px);
+  animation: transitionFadeIn 0.4s ease;
+}
+
+.round-transition-overlay.next {
+  animation: transitionSwitch 0.5s ease;
+}
+
+.round-transition-content {
+  text-align: center;
+  color: white;
+}
+
+/* 確定チェックマーク */
+.transition-check {
+  font-size: 5rem;
+  animation: transitionPopIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 1rem;
+}
+
+/* 次ラウンド番号 */
+.transition-round-number {
+  font-size: 6rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--color-accent-gold);
+  text-shadow: 0 4px 20px rgba(201, 168, 76, 0.5);
+  animation: transitionPopIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 0.5rem;
+}
+
+/* トロフィー */
+.transition-trophy {
+  font-size: 5rem;
+  animation: transitionPopIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 1rem;
+}
+
+.transition-message {
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0;
+  animation: transitionSlideUp 0.4s ease 0.3s forwards;
+}
+
+.transition-complete {
+  color: var(--color-accent-gold);
+}
+
+@keyframes transitionFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes transitionSwitch {
+  0%   { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes transitionPopIn {
+  0%   { opacity: 0; transform: scale(0.3); }
+  50%  { transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes transitionSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

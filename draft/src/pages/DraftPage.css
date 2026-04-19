@@ -1,0 +1,380 @@
+/* ドラフト指名画面スタイル */
+
+.draft-loading {
+  text-align: center;
+  padding: var(--space-3xl);
+  color: var(--color-text-muted);
+}
+
+/* ステータスバー */
+.draft-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.status-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(26, 107, 60, 0.04);
+}
+
+.status-round {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.status-progress {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.status-phase {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.my-nomination-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.nomination-label {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.nomination-horse {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ドラフト未開始 */
+.draft-not-running {
+  text-align: center;
+  padding: var(--space-3xl);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+}
+
+.not-running-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-lg);
+}
+
+.draft-not-running h2 {
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.draft-not-running p {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* タブ */
+.draft-tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--color-bg-section);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  margin-bottom: var(--space-lg);
+}
+
+.draft-tab {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.draft-tab.active {
+  background: var(--color-bg-card);
+  color: var(--color-primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-content {
+  min-height: 200px;
+}
+
+/* 検索結果リスト */
+.draft-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.draft-horse-item {
+  position: relative;
+}
+
+.draft-horse-item.confirmed-out {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.confirmed-badge {
+  position: absolute;
+  top: 50%;
+  right: var(--space-md);
+  transform: translateY(-50%);
+  background: var(--color-text-muted);
+  color: white;
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+/* お気に入りからの指名カード */
+.favorite-pick-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.favorite-pick-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.favorite-pick-card.selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(26, 107, 60, 0.2);
+  background: rgba(26, 107, 60, 0.02);
+}
+
+.fav-pick-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.fav-pick-name {
+  display: block;
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.fav-pick-pedigree {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.fav-pick-memo {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.no-favorites {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--color-text-muted);
+}
+
+/* 指名アクション */
+.nomination-action {
+  position: sticky;
+  bottom: 0;
+  background: var(--color-bg-card);
+  border-top: 2px solid var(--color-accent-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-top: var(--space-lg);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.nomination-preview {
+  margin-bottom: var(--space-md);
+  font-size: var(--text-base);
+}
+
+.nomination-preview-label {
+  color: var(--color-text-muted);
+  margin-right: var(--space-sm);
+}
+
+.nomination-action .btn {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* 指名完了 */
+.nomination-complete {
+  text-align: center;
+  padding: var(--space-3xl);
+  background: rgba(39, 174, 96, 0.05);
+  border: 1px solid rgba(39, 174, 96, 0.2);
+  border-radius: var(--radius-lg);
+}
+
+.nomination-complete-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+.nomination-complete h3 {
+  color: var(--color-confirmed);
+  margin-bottom: var(--space-sm);
+}
+
+.nomination-wait {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: var(--space-md);
+  animation: pulse 2s ease infinite;
+}
+
+/* マイ確定馬 */
+.draft-my-results {
+  margin-top: var(--space-2xl);
+}
+
+.my-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.my-result-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  transition: box-shadow var(--transition-fast);
+}
+
+.my-result-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.my-result-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.my-result-name {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.my-result-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.detail-item {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.my-result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+}
+
+.meta-item {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.region-tag {
+  display: inline-block;
+  margin-left: 3px;
+  padding: 0 4px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-section);
+  color: var(--color-text-secondary);
+}
+
+/* 確認モーダル内の馬詳細 */
+.confirm-horse-detail {
+  background: var(--color-bg-section);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.confirm-horse-detail p {
+  margin-bottom: 4px;
+}
+
+/* レスポンシブ */
+@media (max-width: 767px) {
+  .draft-status-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .my-result-details,
+  .my-result-meta {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+

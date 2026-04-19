@@ -1,0 +1,163 @@
+/* ログイン画面スタイル */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0d4d2b 0%, #1a6b3c 40%, #2d8f55 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景パターン */
+.login-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
+  animation: bgShift 20s ease infinite alternate;
+}
+
+@keyframes bgShift {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* ログインカード */
+.login-card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3xl) var(--space-2xl);
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+
+/* ロゴエリア */
+.login-logo-area {
+  margin-bottom: var(--space-xl);
+}
+
+.login-logo-icon {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-sm);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.login-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  letter-spacing: 4px;
+  margin-bottom: var(--space-xs);
+}
+
+.login-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* 区切り線 */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+}
+
+.login-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
+}
+
+.login-divider-text {
+  font-size: var(--text-xs);
+  color: var(--color-accent-gold);
+  font-weight: 600;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* Googleログインボタン */
+.login-google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.login-google-btn:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(26, 107, 60, 0.15);
+  transform: translateY(-2px);
+}
+
+.login-google-btn:active {
+  transform: translateY(0);
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+/* 補足テキスト */
+.login-note {
+  margin-top: var(--space-lg);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* 読み込み表示 */
+.login-loading {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-lg);
+}
+
+/* フッター */
+.login-footer {
+  position: absolute;
+  bottom: var(--space-xl);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: var(--text-xs);
+  z-index: 1;
+}
+
+/* レスポンシブ */
+@media (max-width: 480px) {
+  .login-card {
+    padding: var(--space-2xl) var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .login-title {
+    font-size: var(--text-2xl);
+    letter-spacing: 2px;
+  }
+
+  .login-logo-icon {
+    font-size: 2.5rem;
+  }
+}

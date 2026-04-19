@@ -1,0 +1,279 @@
+/* 管理パネルスタイル */
+
+.admin-warning {
+  text-align: center;
+  padding: var(--space-2xl);
+  background: rgba(243, 156, 18, 0.1);
+  border: 1px solid rgba(243, 156, 18, 0.3);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.admin-warning p {
+  margin-bottom: var(--space-lg);
+  color: var(--color-pending);
+  font-weight: 600;
+}
+
+.admin-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.admin-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+/* ファイルアップロード */
+.upload-area {
+  margin-bottom: var(--space-lg);
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-md) var(--space-xl);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  width: 100%;
+  justify-content: center;
+}
+
+.file-label:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(26, 107, 60, 0.02);
+}
+
+/* プレビュー */
+.preview-area {
+  margin-top: var(--space-lg);
+}
+
+.preview-info {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.preview-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.preview-table th {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.preview-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-light);
+  white-space: nowrap;
+}
+
+.preview-table .female-row {
+  background: rgba(192, 57, 43, 0.03);
+}
+
+.upload-btn {
+  width: 100%;
+  margin-top: var(--space-md);
+}
+
+/* 結果メッセージ */
+.upload-result {
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.upload-result.success {
+  background: rgba(39, 174, 96, 0.1);
+  border: 1px solid rgba(39, 174, 96, 0.3);
+  color: var(--color-confirmed);
+}
+
+.upload-result.error {
+  background: rgba(192, 57, 43, 0.1);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  color: var(--color-accent-red);
+}
+
+/* ドラフト進行管理 */
+.draft-status-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.status-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.status-value {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.status-value.running {
+  color: var(--color-confirmed);
+}
+
+.draft-controls {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* 参加者管理 */
+.subsection-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.participant-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.participant-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-section);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.participant-row:hover {
+  background: rgba(26, 107, 60, 0.05);
+}
+
+.participant-row.available {
+  background: transparent;
+  border: 1px dashed var(--color-border);
+}
+
+.participant-order {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-accent-gold);
+  min-width: 24px;
+}
+
+.participant-avatar-sm {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.participant-name-admin {
+  flex: 1;
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+/* 過去シーズンインポート */
+.hist-import-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.hist-field-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.hist-label {
+  width: 100px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.hist-input {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  background: var(--color-surface);
+  color: var(--color-text);
+  max-width: 300px;
+}
+
+.hist-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.hist-textarea {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-family: monospace;
+  background: var(--color-surface);
+  color: var(--color-text);
+  resize: vertical;
+  box-sizing: border-box;
+  margin-bottom: var(--space-md);
+}
+
+.hist-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
