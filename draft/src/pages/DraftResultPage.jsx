@@ -1,6 +1,7 @@
-// 指名結果発表画面
+// 指名結果発表画面 — v2
 import { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
+import RoundStrip from '../components/RoundStrip';
 import ParticipantCard from '../components/ParticipantCard';
 import ConfirmModal from '../components/ConfirmModal';
 import { useDraftState } from '../hooks/useDraftState';

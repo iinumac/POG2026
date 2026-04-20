@@ -1,0 +1,71 @@
+/* ============================================
+   ラウンドステータスバー
+   ============================================ */
+
+.v2-round-strip {
+  background: var(--color-primary-dark);
+  color: #fff;
+  border-bottom: 2px solid var(--color-accent-gold);
+}
+
+.v2-round-strip-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-sm) var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.v2-round-num {
+  background: var(--color-accent-gold);
+  color: var(--color-primary-dark);
+  padding: 2px 10px;
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.v2-round-phase {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.v2-round-progress {
+  color: rgba(255,255,255,.7);
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+
+.v2-round-timer {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-accent-gold);
+  font-weight: 600;
+}
+
+.v2-round-timer.urgent {
+  color: var(--color-accent-red-light);
+}
+
+.v2-round-pill-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 767px) {
+  .v2-round-strip-inner {
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-sm);
+    font-size: 11px;
+  }
+  .v2-round-timer { margin-left: 0; }
+}
