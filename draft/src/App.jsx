@@ -37,6 +37,17 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+// 管理者専用ルートのラッパー
+function AdminRoute({ children }) {
+  const { isAuthenticated, needsSetup, loading, isAdmin } = useAuth();
+
+  if (loading) return null;
+  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  if (needsSetup) return <Navigate to="/setup" replace />;
+  if (!isAdmin) return <Navigate to="/" replace />;
+  return children;
+}
+
 // セットアップ画面専用ラッパー
 function SetupRoute({ children }) {
   const { isAuthenticated, needsSetup, loading } = useAuth();
@@ -67,7 +78,7 @@ function AppRoutes() {
         <ProtectedRoute><DraftPage /></ProtectedRoute>
       } />
       <Route path="/draft/result" element={
-        <ProtectedRoute><DraftResultPage /></ProtectedRoute>
+        <AdminRoute><DraftResultPage /></AdminRoute>
       } />
       <Route path="/results" element={
         <ProtectedRoute><ResultsPage /></ProtectedRoute>

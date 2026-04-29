@@ -3,6 +3,22 @@
 // 検索をクライアントサイドで完結させる
 import Dexie from 'dexie';
 
+/**
+ * ひらがな→カタカナ変換（検索用）
+ */
+function toKatakana(str) {
+  return str.replace(/[\u3041-\u3096]/g, (ch) =>
+    String.fromCharCode(ch.charCodeAt(0) + 0x60)
+  );
+}
+
+/**
+ * ひらがな・カタカナを区別しない部分一致判定
+ */
+function kanaIncludes(text, term) {
+  return toKatakana(text).includes(toKatakana(term));
+}
+
 // IndexedDBデータベース定義
 const db = new Dexie('POGDraftDB');
 db.version(1).stores({
@@ -88,15 +104,18 @@ export async function searchHorses(query, searchType = 'name', seasonId = '2026'
       .startsWith(`${seasonId}_`)
       .toArray();
 
-    // クライアントサイドで部分一致フィルタ
+    // クライアントサイドで部分一致フィルタ（ひらがな⇔カタカナ区別なし）
     const filtered = allHorses.filter((horse) => {
       if (searchType === 'mother') {
-        return horse.母 && horse.母.includes(searchTerm);
+        return horse.母 && kanaIncludes(horse.母, searchTerm);
       }
-      // 馬名検索: 部分一致 + 母名生年での一致も含む
+      // 馬名 + 母名生年 + 父 + 母 + 母父で部分一致
       return (
-        (horse.馬名 && horse.馬名.includes(searchTerm)) ||
-        (horse.母名生年 && horse.母名生年.includes(searchTerm))
+        (horse.馬名 && kanaIncludes(horse.馬名, searchTerm)) ||
+        (horse.母名生年 && kanaIncludes(horse.母名生年, searchTerm)) ||
+        (horse.父 && kanaIncludes(horse.父, searchTerm)) ||
+        (horse.母 && kanaIncludes(horse.母, searchTerm)) ||
+        (horse.母父 && kanaIncludes(horse.母父, searchTerm))
       );
     });
 
@@ -129,6 +148,19 @@ export async function getCachedHorseCount(seasonId) {
       .count();
   } catch {
     return 0;
+  }
+}
+
+/**
+ * 特定シーズンのキャッシュをクリア
+ */
+export async function clearSeasonCache(seasonId) {
+  try {
+    await db.horses.where('id').startsWith(`${seasonId}_`).delete();
+    await db.meta.delete(`version_${seasonId}`);
+    console.log(`Season ${seasonId} のキャッシュをクリアしました`);
+  } catch (error) {
+    console.error('シーズンキャッシュクリアエラー:', error);
   }
 }
 

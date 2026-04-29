@@ -21,6 +21,13 @@ export function useHorseSearch() {
   const [cacheLoading, setCacheLoading] = useState(true);
   const debounceRef = useRef(null);
 
+  // シーズン切替時に検索結果をリセット
+  useEffect(() => {
+    setResults([]);
+    setCacheReady(false);
+    setCacheCount(0);
+  }, [currentSeasonId]);
+
   // キャッシュの初期化・更新チェック
   useEffect(() => {
     const initCache = async () => {

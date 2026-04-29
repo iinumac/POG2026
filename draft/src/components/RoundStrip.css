@@ -22,15 +22,16 @@
 .v2-round-num {
   background: var(--color-accent-gold);
   color: var(--color-primary-dark);
-  padding: 2px 10px;
-  border-radius: 2px;
+  padding: 4px 14px;
+  border-radius: 3px;
   font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 16px;
+  letter-spacing: 2px;
 }
 
 .v2-round-phase {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 14px;
   letter-spacing: 1px;
 }
 

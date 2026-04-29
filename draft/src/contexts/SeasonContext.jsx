@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { clearSeasonCache } from '../services/horseCache';
 
 const SeasonContext = createContext(null);
 
@@ -62,10 +63,15 @@ export function SeasonProvider({ children }) {
     }
   };
 
-  // シーズン切り替え
+  // シーズン切り替え（旧シーズンのローカルキャッシュをクリア）
   const switchSeason = async (seasonId) => {
+    const oldSeasonId = currentSeasonId;
     setCurrentSeasonId(seasonId);
     await fetchSeasonInfo(seasonId);
+    // 旧シーズンの馬データキャッシュをクリア（年度内のみ有効）
+    if (oldSeasonId && oldSeasonId !== seasonId) {
+      await clearSeasonCache(oldSeasonId);
+    }
   };
 
   // 現在のシーズンがアクティブかどうか

@@ -1,6 +1,6 @@
 // ドラフト状態管理カスタムフック
 // Firestoreのリアルタイムリスナーでドラフト進行状態を同期
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   doc, collection, onSnapshot, getDocs, setDoc, deleteDoc, query, where,
 } from 'firebase/firestore';
@@ -137,10 +137,38 @@ export function useDraftState() {
   const allNominated = draftUsers.length > 0 &&
     currentRoundStatuses.length >= draftUsers.length;
 
-  // 指名済みの馬ID一覧（全ラウンド通じて）
-  const nominatedHorseIds = new Set(
-    fixedResults.map((r) => r.umaId)
-  );
+  // 指名不可の馬ID一覧
+  // 指名受付中(nominating): 過去ラウンド確定済みのみ
+  // 公開後(revealing/lottery/renominating):
+  //   + 現ラウンド単独指名の馬（凍結）
+  //   + 現ラウンド抽選勝ちの馬（凍結）
+  const phase = draftSettings?.phase || 'waiting';
+  const nominatedHorseIds = useMemo(() => {
+    // 過去ラウンド確定済み — 常にブロック
+    const ids = new Set(fixedResults.map((r) => r.umaId));
+
+    // 公開後のみ、現ラウンドの凍結を追加
+    if (phase === 'revealing' || phase === 'lottery' || phase === 'renominating') {
+      const horseCounts = {};
+      currentRoundStatuses.forEach((s) => {
+        if (!horseCounts[s.umaId]) horseCounts[s.umaId] = [];
+        horseCounts[s.umaId].push(s);
+      });
+
+      for (const [umaId, statuses] of Object.entries(horseCounts)) {
+        if (statuses.length === 1) {
+          // 単独指名 → 凍結
+          ids.add(umaId);
+        } else {
+          // 重複 → 抽選勝者(rejected以外)がいれば凍結
+          const hasWinner = statuses.some((s) => s.status !== 'rejected');
+          if (hasWinner) ids.add(umaId);
+        }
+      }
+    }
+
+    return ids;
+  }, [fixedResults, currentRoundStatuses, phase]);
 
   // 競合馬を検出
   const getConflicts = useCallback(() => {

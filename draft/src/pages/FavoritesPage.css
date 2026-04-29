@@ -89,15 +89,37 @@
   padding: 8px 14px; background: #f8f0d4; border-bottom: 1px solid #e6d9a8;
   font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #7a6418;
 }
-.v2-fav-results-list { max-height: 260px; overflow-y: auto; }
+.v2-fav-results-list { max-height: 360px; overflow-y: auto; }
 
 .v2-fav-result-row {
-  display: grid; grid-template-columns: minmax(180px,1.2fr) minmax(200px,1.5fr) minmax(140px,1fr) auto;
-  gap: 12px; align-items: center; padding: 10px 14px;
+  display: grid; grid-template-columns: minmax(160px,1fr) minmax(240px,1.5fr) minmax(120px,auto) auto;
+  gap: 10px; align-items: center; padding: 10px 14px;
   border-bottom: 1px solid #f0e5c4; cursor: pointer; transition: background 100ms;
 }
 .v2-fav-result-row:last-child { border-bottom: none; }
 .v2-fav-result-row:hover { background: #fff6d9; }
+
+/* 検索結果の血統表示 */
+.v2-fav-result-ped {
+  display: flex; gap: 10px; font-size: 11px; color: var(--color-text-secondary);
+  flex-wrap: wrap;
+}
+.v2-fav-result-ped-item {
+  display: inline-flex; align-items: center; gap: 3px;
+  white-space: nowrap;
+}
+.v2-fav-result-ped-item > i {
+  font-style: normal; font-size: 9px; font-weight: 600;
+  color: var(--color-text-muted); padding: 0 3px;
+  background: var(--color-bg-section); border-radius: 2px;
+}
+.v2-fav-result-ped-item > b { color: var(--color-text); font-weight: 600; }
+
+/* ハイライト */
+.v2-highlight {
+  background: rgba(201,168,76,.35); color: inherit;
+  font-weight: 700; padding: 0 1px; border-radius: 2px;
+}
 
 .v2-fav-name-cell { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .v2-fav-name {
@@ -130,10 +152,10 @@
 }
 .v2-fav-row.is-locked { opacity: 0.5; pointer-events: none; }
 
-/* Dense row layout */
+/* Dense row layout — 5 columns: rank, main, grades, score, actions */
 .v2-fav-rowc {
   display: grid;
-  grid-template-columns: 56px 1fr 56px;
+  grid-template-columns: 56px 1fr 100px 72px 56px;
   gap: 10px;
   align-items: center;
   padding: 8px 12px;
@@ -155,7 +177,13 @@
   font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
   color: var(--color-text-muted); text-transform: uppercase;
 }
-.v2-fav-colh.rank { text-align: center; }
+.v2-fav-colh.rank, .v2-fav-colh.score { text-align: center; }
+.v2-fav-colh.grades {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; text-align: center;
+}
+.v2-fav-colh.grades span {
+  font-size: 11px; color: var(--color-text); letter-spacing: 0; font-weight: 700;
+}
 
 /* Rank badge */
 .v2-fav-rankc {
@@ -267,14 +295,289 @@
 .v2-fav-hint .lucide { flex-shrink: 0; color: var(--color-text-muted); }
 .v2-fav-hint b { color: var(--color-text); font-weight: 600; }
 
-/* レスポンシブ */
+/* ────── Grades column ────── */
+.v2-fav-gradesc {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 4px; align-items: center; justify-items: center; flex-shrink: 0;
+}
+.v2-fav-grade-chipc {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 28px;
+  font-family: var(--font-mono); font-size: 14px; font-weight: 700;
+  border-radius: 5px; border: 1.5px solid transparent;
+}
+.v2-fav-grade-chipc.grade-A { background: #dbe7fd; color: #1e4fb8; border-color: #9cbaf3; }
+.v2-fav-grade-chipc.grade-B { background: #fde1e1; color: #b01d1d; border-color: #f3a4a4; }
+.v2-fav-grade-chipc.grade-C { background: #d9f2e2; color: #117a38; border-color: #96d6ac; }
+.v2-fav-grade-chipc.is-empty {
+  background: transparent; color: var(--color-text-muted);
+  border-style: dashed; border-color: var(--color-border); font-weight: 500; font-size: 12px;
+}
+
+/* ────── Edit mode: 2-row layout ────── */
+.v2-fav-edit-wrap {
+  padding: 10px 12px;
+  background: rgba(201,168,76,.06);
+}
+.v2-fav-edit-row1 {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 8px;
+}
+.v2-fav-edit-row1 .v2-fav-mainc { flex: 1; min-width: 0; }
+
+/* 編集用順位入力 */
+.v2-fav-rankc-edit {
+  display: inline-flex; align-items: center;
+  min-width: 56px; height: 36px; padding: 0 4px 0 8px;
+  background: #fff; border: 1.5px solid var(--color-accent-gold);
+  border-radius: 6px; box-shadow: 0 0 0 2px rgba(201,168,76,.12);
+}
+.v2-fav-rankc-prefix {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  color: var(--color-text-muted); margin-right: 2px;
+}
+.v2-fav-rankc-edit input {
+  width: 36px; border: 0; background: transparent;
+  font-family: var(--font-mono); font-size: 16px; font-weight: 700;
+  color: var(--color-text); padding: 0; text-align: center;
+}
+.v2-fav-rankc-edit input:focus { outline: none; }
+.v2-fav-rankc-edit input::-webkit-outer-spin-button,
+.v2-fav-rankc-edit input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.v2-fav-rankc-edit input[type=number] { -moz-appearance: textfield; }
+
+/* Row 2: メモ + グレード + 点数 — 横並び */
+.v2-fav-edit-row2 {
+  display: flex; align-items: flex-end; gap: 16px;
+  padding-left: 66px; /* rankの幅分インデント */
+  flex-wrap: wrap;
+}
+
+.v2-fav-edit-memo {
+  flex: 1; min-width: 180px;
+  display: flex; align-items: center; gap: 6px;
+}
+.v2-fav-edit-memo > i {
+  font-style: normal; font-size: 9px; font-weight: 700;
+  color: var(--color-text-muted); letter-spacing: 0.5px;
+  padding: 1px 4px; background: var(--color-bg-section); border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.v2-fav-edit-grades {
+  display: flex; gap: 10px; align-items: flex-end;
+}
+.v2-fav-edit-grade-group {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+.v2-fav-edit-grade-label {
+  font-size: 9px; font-weight: 700; color: var(--color-text-muted);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+.v2-fav-edit-score {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+
+/* Grade picker */
+.v2-fav-grade-pickerc {
+  display: inline-flex; background: #fff;
+  border: 1px solid var(--color-border); border-radius: 4px; padding: 2px; gap: 2px;
+}
+.v2-fav-grade-btnc {
+  width: 28px; height: 28px; padding: 0;
+  background: transparent; border: 0;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+  color: var(--color-text-muted); border-radius: 3px;
+  cursor: pointer; transition: all 100ms ease;
+}
+.v2-fav-grade-btnc:hover { background: var(--color-bg-section); color: var(--color-text); }
+.v2-fav-grade-btnc.active { background: var(--g-bg); color: var(--g-fg); }
+
+/* ────── Score column ────── */
+.v2-fav-scorec {
+  display: inline-flex; align-items: baseline; gap: 2px;
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  min-width: 50px; justify-content: flex-end;
+}
+.v2-fav-scorec b { font-size: 17px; font-weight: 700; color: var(--color-primary-dark); line-height: 1; }
+.v2-fav-scorec span { font-size: 10px; color: var(--color-text-muted); font-weight: 600; }
+.v2-fav-scorec .dash { color: var(--color-text-muted); opacity: 0.4; font-size: 14px; }
+
+/* Editable score */
+.v2-fav-scorec-edit {
+  background: #fff; border: 1px solid var(--color-border); border-radius: 3px;
+  padding: 2px 4px 2px 2px; height: 28px;
+}
+.v2-fav-scorec-edit:focus-within { border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(26,107,60,.08); }
+.v2-fav-scorec-edit input {
+  width: 40px; border: 0; background: transparent;
+  font-family: var(--font-mono); font-size: 14px; font-weight: 700;
+  text-align: center; color: var(--color-text); padding: 0;
+}
+.v2-fav-scorec-edit input:focus { outline: none; }
+.v2-fav-scorec-edit input::-webkit-outer-spin-button,
+.v2-fav-scorec-edit input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.v2-fav-scorec-edit input[type=number] { -moz-appearance: textfield; }
+
+/* ────── Stat chips ────── */
+.v2-fav-stat-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+.v2-fav-stat-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: 3px;
+  background: var(--color-bg-section);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  color: var(--color-text); font-variant-numeric: tabular-nums;
+}
+.v2-fav-stat-chip i {
+  font-style: normal; font-size: 9px; font-weight: 600;
+  color: var(--color-text-muted); letter-spacing: 0.5px;
+}
+.v2-fav-stat-chip.grade-A { background: rgba(37,99,235,.12); color: #1e4fb8; }
+.v2-fav-stat-chip.grade-A i { color: #2563eb; }
+.v2-fav-stat-chip.grade-B { background: rgba(220,38,38,.12); color: #a41b1b; }
+.v2-fav-stat-chip.grade-B i { color: #dc2626; }
+.v2-fav-stat-chip.grade-C { background: rgba(22,163,74,.12); color: #0f7a37; }
+.v2-fav-stat-chip.grade-C i { color: #16a34a; }
+
+/* ════════ ドラフト指名状況バッジ ════════ */
+.v2-draft-info-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: default;
+  position: relative;
+  flex-shrink: 0;
+}
+.v2-draft-info-badge .lucide { width: 10px; height: 10px; }
+
+.v2-draft-info-badge.di-mine      { background: rgba(192,57,43,.12); color: var(--color-accent-red); }
+.v2-draft-info-badge.di-other     { background: rgba(0,0,0,.08); color: var(--color-text-secondary); }
+.v2-draft-info-badge.di-nominated { background: rgba(41,128,185,.12); color: #2471a3; }
+.v2-draft-info-badge.di-rejected  { background: rgba(0,0,0,.06); color: var(--color-text-muted); }
+
+/* ツールチップ */
+.v2-draft-info-tooltip {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  background: var(--color-primary-dark);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  white-space: nowrap;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  pointer-events: none;
+}
+.v2-draft-info-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--color-primary-dark);
+}
+.v2-draft-info-badge:hover .v2-draft-info-tooltip {
+  display: block;
+}
+
+/* ════════ 追加フォーム ════════ */
+.v2-add-form {
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-accent-gold);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(201,168,76,.15);
+  margin-bottom: var(--space-md);
+}
+.v2-add-form-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.v2-add-form-title {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 700; color: var(--color-primary-dark);
+}
+
+.v2-add-form-horse {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px; background: var(--color-bg-section); border-radius: 8px;
+  margin-bottom: 14px;
+}
+.v2-add-form-horse-info { min-width: 0; flex: 1; }
+.v2-add-form-horse-name {
+  font-size: 16px; font-weight: 700; color: var(--color-text);
+  letter-spacing: 0.5px; margin-bottom: 4px;
+}
+.v2-add-form-horse-ped {
+  display: flex; gap: 10px; font-size: 11px; color: var(--color-text-secondary);
+  flex-wrap: wrap; margin-bottom: 3px;
+}
+.v2-add-form-horse-ped i {
+  font-style: normal; font-size: 9px; font-weight: 600; color: var(--color-text-muted);
+  padding: 0 3px; background: #fff; border-radius: 2px; margin-right: 3px;
+}
+.v2-add-form-horse-ped b { color: var(--color-text); font-weight: 600; }
+.v2-add-form-horse-meta { font-size: 11px; color: var(--color-text-muted); }
+
+.v2-add-form-fields {
+  display: flex; flex-wrap: wrap; gap: 12px 16px;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+.v2-add-form-field {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.v2-add-form-field > label {
+  font-size: 10px; font-weight: 700; color: var(--color-text-muted);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.v2-add-form-field-wide { flex: 1; min-width: 200px; }
+
+.v2-add-form-actions {
+  display: flex; justify-content: flex-end; gap: 8px;
+  padding-top: 12px; border-top: 1px solid var(--color-border-light);
+}
+
+/* ────── レスポンシブ ────── */
 @media (max-width: 900px) {
   .v2-fav-rowc {
     grid-template-columns: 48px 1fr auto;
-    gap: 6px;
+    grid-template-areas:
+      "rank main actions"
+      "rank grades score";
+    gap: 6px 10px;
     padding: 8px 10px;
   }
+  .v2-fav-rankc { grid-area: rank; align-self: center; }
+  .v2-fav-mainc { grid-area: main; }
+  .v2-fav-gradesc { grid-area: grades; justify-content: flex-start; }
+  .v2-fav-scorec, .v2-fav-scorec-edit { grid-area: score; justify-content: flex-start; }
+  .v2-fav-rowc .v2-fav-col-actions { grid-area: actions; }
   .v2-fav-linec1, .v2-fav-linec2 { white-space: normal; }
+
+  .v2-fav-rowc-head {
+    grid-template-columns: 48px 1fr auto;
+    grid-template-areas: "rank main actions";
+  }
+  .v2-fav-rowc-head .v2-fav-colh.grades,
+  .v2-fav-rowc-head .v2-fav-colh.score { display: none; }
+
+  /* 編集モード: 縦積み */
+  .v2-fav-edit-row2 { padding-left: 0; flex-direction: column; align-items: stretch; gap: 10px; }
+  .v2-fav-edit-grades { flex-wrap: wrap; }
 }
 
 @media (max-width: 640px) {

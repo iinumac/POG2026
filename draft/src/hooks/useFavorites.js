@@ -58,6 +58,10 @@ export function useFavorites() {
         breeder: horse.生産者 || '',
         owner: horse.馬主 || '',
         memo: '',
+        pedigreeGrade: null,
+        buildGrade: null,
+        growthGrade: null,
+        score: null,
         priority: favorites.length + 1,
         addedAt: new Date(),
       });
@@ -104,6 +108,20 @@ export function useFavorites() {
     }
   }, [user, getFavoritesPath]);
 
+  // 評価データ更新（グレード・点数・メモ一括）
+  const updateEvaluation = useCallback(async (horseId, evalData) => {
+    if (!user) return;
+    try {
+      const favRef = doc(db, getFavoritesPath(), horseId);
+      await updateDoc(favRef, evalData);
+      setFavorites((prev) =>
+        prev.map((f) => (f.id === horseId ? { ...f, ...evalData } : f))
+      );
+    } catch (error) {
+      console.error('評価更新エラー:', error);
+    }
+  }, [user, getFavoritesPath]);
+
   // 優先順位更新
   const updatePriority = useCallback(async (reorderedFavorites) => {
     if (!user) return;
@@ -131,6 +149,7 @@ export function useFavorites() {
     removeFavorite,
     toggleFavorite,
     updateMemo,
+    updateEvaluation,
     updatePriority,
     isFavorite,
     refreshFavorites: fetchFavorites,

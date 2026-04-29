@@ -121,7 +121,7 @@ export default function ResultsPage() {
                     <th className="matrix-header-user">参加者</th>
                     {[...Array(maxRounds)].map((_, i) => (
                       <th key={i} className="matrix-header-round">
-                        <span className="round-num">R{i + 1}</span>
+                        <span className="round-num">{i + 1}巡</span>
                       </th>
                     ))}
                   </tr>

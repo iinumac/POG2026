@@ -1,5 +1,6 @@
 // 管理パネル画面
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import ConfirmModal from '../components/ConfirmModal';
 import { useAuth } from '../contexts/AuthContext';
@@ -11,6 +12,7 @@ import { startRound, addDraftUser, removeDraftUser, resetDraft, setPhase, import
 import './AdminPage.css';
 
 export default function AdminPage() {
+  const navigate = useNavigate();
   const { isAdmin, userProfile } = useAuth();
   const { currentSeasonId } = useSeason();
   const { draftSettings, draftUsers, loading: draftLoading } = useDraftState();
@@ -299,7 +301,7 @@ export default function AdminPage() {
                     </span>
                   </div>
                   <div className="status-item">
-                    <span className="status-label">ラウンド</span>
+                    <span className="status-label">巡目</span>
                     <span className="status-value">{draftSettings?.currentRound || 1} / {draftSettings?.maxRounds || 10}</span>
                   </div>
                   <div className="status-item">
@@ -319,13 +321,19 @@ export default function AdminPage() {
                       onClick={handleStartDraft}
                       disabled={draftUsers.length === 0}
                     >
-                      ドラフト開始（R{draftSettings?.currentRound || 1}）
+                      ドラフト開始（{draftSettings?.currentRound || 1}巡目）
                     </button>
                   ) : (
                     <button className="btn btn-secondary" onClick={handleStopDraft}>
                       ドラフト停止
                     </button>
                   )}
+                  <button className="btn btn-gold" onClick={() => navigate('/draft/result')}>
+                    📋 指名結果発表ページ
+                  </button>
+                  <button className="btn btn-gold" onClick={() => navigate('/draft')}>
+                    🏇 指名画面
+                  </button>
                   <button
                     className="btn btn-danger"
                     onClick={() => setShowResetConfirm(true)}

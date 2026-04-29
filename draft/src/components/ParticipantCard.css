@@ -1,168 +1,276 @@
-/* 参加者カードスタイル */
-.participant-card {
+/* ============================================
+   参加者カード — v2 ド派手演出
+   ============================================ */
+
+.pc {
   background: var(--color-bg-card);
   border: 2px solid var(--color-border-light);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
+  border-radius: 12px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  transition: all var(--transition-base);
+  gap: 10px;
+  transition: all 300ms ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.participant-card.compact {
-  padding: var(--space-sm);
-}
-
-.participant-card.conflict {
+/* ────── 競合 ────── */
+.pc-conflict {
   border-color: var(--color-accent-red);
-  animation: borderPulse 1.5s ease infinite;
-  box-shadow: 0 0 12px rgba(192, 57, 43, 0.15);
+  animation: pcBorderPulse 1.5s ease infinite;
+  box-shadow: 0 0 20px rgba(192, 57, 43, 0.2);
 }
 
-.participant-card.winner {
+@keyframes pcBorderPulse {
+  0%, 100% { border-color: var(--color-accent-red); box-shadow: 0 0 20px rgba(192, 57, 43, 0.2); }
+  50% { border-color: rgba(192, 57, 43, 0.3); box-shadow: 0 0 8px rgba(192, 57, 43, 0.1); }
+}
+
+/* ────── 当選 ────── */
+.pc-winner {
   border-color: var(--color-accent-gold);
-  box-shadow: 0 0 16px rgba(201, 168, 76, 0.3);
-  background: linear-gradient(135deg, rgba(201, 168, 76, 0.05), transparent);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.4), inset 0 0 40px rgba(201, 168, 76, 0.06);
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), transparent 60%);
 }
 
-.participant-card.loser {
-  opacity: 0.5;
+.pc-winner::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--color-accent-gold), transparent, var(--color-accent-gold-light), transparent);
+  z-index: -1;
+  animation: pcWinnerGlow 3s ease infinite;
+}
+
+@keyframes pcWinnerGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* ────── 落選 ────── */
+.pc-loser {
+  opacity: 0.4;
   border-color: var(--color-text-muted);
+  filter: grayscale(0.5);
 }
 
-/* ヘッダー */
-.participant-header {
+/* ────── ユーザー ────── */
+.pc-user {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 10px;
 }
 
-.participant-avatar {
+.pc-avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #fff;
   font-weight: 700;
-  font-size: var(--text-xs);
+  font-size: 12px;
   flex-shrink: 0;
 }
 
-.compact .participant-avatar {
-  width: 24px;
-  height: 24px;
-  font-size: 10px;
-}
-
-.participant-name {
-  font-size: var(--text-sm);
-  font-weight: 600;
+.pc-name {
+  font-size: 14px;
+  font-weight: 700;
   color: var(--color-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.compact .participant-name {
-  font-size: var(--text-xs);
-}
-
-/* 馬情報 */
-.participant-horse {
+/* ────── 馬表示エリア ────── */
+.pc-horse {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
+  min-height: 60px;
+  perspective: 800px;
 }
 
-/* 未指名 */
-.horse-waiting {
+.pc-state {
+  width: 100%;
   text-align: center;
+}
+
+/* ── 未指名 ── */
+.pc-waiting {
   color: var(--color-text-muted);
 }
 
-.waiting-icon {
-  display: block;
-  font-size: 1.2rem;
+.pc-waiting-icon {
+  font-size: 2rem;
+  opacity: 0.6;
+  animation: pcFloat 3s ease infinite;
 }
 
-.waiting-text {
-  font-size: var(--text-xs);
+@keyframes pcFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
-/* 非公開 */
-.horse-hidden {
-  text-align: center;
-  perspective: 600px;
+.pc-waiting-text {
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-top: 4px;
 }
 
-.hidden-icon {
-  display: block;
-  font-size: 1.5rem;
+/* ── 非公開（裏面） ── */
+.pc-card-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  border-radius: 8px;
+  color: rgba(255,255,255,.9);
+  box-shadow: 0 4px 16px rgba(13, 77, 43, 0.3);
+  cursor: default;
 }
 
-.hidden-text {
-  font-size: var(--text-base);
+.pc-card-back-mark {
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: var(--color-accent-gold);
+  text-shadow: 0 2px 8px rgba(201, 168, 76, 0.5);
+  line-height: 1;
+}
+
+/* ── 公開（表面） ── */
+.pc-revealed {
+  transform-style: preserve-3d;
+}
+
+/* バーストエフェクト */
+.pc-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.3) 0%, transparent 60%);
+  pointer-events: none;
+  animation: pcBurstAnim 0.8s ease-out forwards;
+}
+
+@keyframes pcBurstAnim {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(0.3); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.pc-reveal-content {
+  position: relative;
+  z-index: 1;
+}
+
+.pc-gender {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--color-text-muted);
-  letter-spacing: 4px;
 }
 
-/* 公開 */
-.horse-revealed {
-  text-align: center;
-  perspective: 600px;
-}
+.pc-gender.m { background: rgba(41,128,185,.15); color: var(--color-accent-blue); }
+.pc-gender.f { background: rgba(192,57,43,.15); color: var(--color-accent-red); }
 
-.revealed-gender {
-  font-size: var(--text-sm);
-  font-weight: 700;
-}
-
-.revealed-name {
+.pc-horse-name {
   display: block;
-  font-size: var(--text-md);
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 900;
   color: var(--color-text);
-  margin: 2px 0;
+  letter-spacing: 1px;
+  margin: 6px 0 4px;
+  animation: pcNameIn 0.4s ease 0.3s both;
 }
 
-.compact .revealed-name {
-  font-size: var(--text-sm);
+@keyframes pcNameIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.revealed-pedigree {
+.pc-pedigree {
   display: block;
-  font-size: var(--text-xs);
+  font-size: 13px;
   color: var(--color-text-secondary);
+  animation: pcNameIn 0.4s ease 0.5s both;
 }
 
-/* 競合/当選/落選インジケーター */
-.conflict-indicator,
-.winner-indicator,
-.loser-indicator {
+/* ────── バッジ ────── */
+.pc-badge {
   text-align: center;
-  font-size: var(--text-xs);
+  font-size: 13px;
   font-weight: 700;
-  padding: 2px 0;
-  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  border-radius: 6px;
 }
 
-.conflict-indicator {
+.pc-badge-conflict {
   color: var(--color-accent-red);
   background: rgba(192, 57, 43, 0.1);
+  animation: pcBadgePulse 1s ease infinite;
 }
 
-.winner-indicator {
-  color: var(--color-accent-gold);
-  background: rgba(201, 168, 76, 0.15);
+@keyframes pcBadgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
-.loser-indicator {
+.pc-badge-winner {
+  color: #000;
+  background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-gold-light));
+  box-shadow: 0 2px 12px rgba(201, 168, 76, 0.4);
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.pc-badge-loser {
   color: var(--color-text-muted);
   background: var(--color-bg-section);
 }
+
+/* ============================================
+   サイズオーバーライド（dr-grid から継承）
+   ============================================ */
+
+/* size-xl (1-4人) */
+:where(.dr-grid.size-xl) .pc { padding: 20px; gap: 14px; border-radius: 14px; border-width: 3px; }
+:where(.dr-grid.size-xl) .pc-avatar { width: 48px; height: 48px; font-size: 20px; }
+:where(.dr-grid.size-xl) .pc-name { font-size: 22px; }
+:where(.dr-grid.size-xl) .pc-horse { min-height: 100px; }
+:where(.dr-grid.size-xl) .pc-card-back { padding: 20px; }
+:where(.dr-grid.size-xl) .pc-card-back-mark { font-size: 2.5rem; letter-spacing: 8px; }
+:where(.dr-grid.size-xl) .pc-waiting-icon { font-size: 3rem; }
+:where(.dr-grid.size-xl) .pc-waiting-text { font-size: 16px; }
+:where(.dr-grid.size-xl) .pc-gender { width: 36px; height: 36px; font-size: 22px; }
+:where(.dr-grid.size-xl) .pc-horse-name { font-size: 28px; letter-spacing: 2px; }
+:where(.dr-grid.size-xl) .pc-pedigree { font-size: 18px; }
+:where(.dr-grid.size-xl) .pc-badge { font-size: 16px; padding: 6px 16px; }
+
+/* size-lg (5-6人) */
+:where(.dr-grid.size-lg) .pc { padding: 16px; gap: 10px; border-radius: 12px; }
+:where(.dr-grid.size-lg) .pc-avatar { width: 40px; height: 40px; font-size: 16px; }
+:where(.dr-grid.size-lg) .pc-name { font-size: 18px; }
+:where(.dr-grid.size-lg) .pc-card-back { padding: 16px; }
+:where(.dr-grid.size-lg) .pc-card-back-mark { font-size: 2rem; letter-spacing: 6px; }
+:where(.dr-grid.size-lg) .pc-gender { width: 32px; height: 32px; font-size: 18px; }
+:where(.dr-grid.size-lg) .pc-horse-name { font-size: 22px; }
+:where(.dr-grid.size-lg) .pc-pedigree { font-size: 16px; }
+
+/* size-md (7-8人) */
+:where(.dr-grid.size-md) .pc-avatar { width: 36px; height: 36px; font-size: 14px; }
+:where(.dr-grid.size-md) .pc-name { font-size: 16px; }
+:where(.dr-grid.size-md) .pc-horse-name { font-size: 18px; }
