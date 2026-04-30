@@ -6,7 +6,7 @@ import ConfirmModal from '../components/ConfirmModal';
 import { useAuth } from '../contexts/AuthContext';
 import { useSeason } from '../contexts/SeasonContext';
 import { useDraftState } from '../hooks/useDraftState';
-import { collection, writeBatch, doc, setDoc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, setDoc, getDoc, getDocs, Bytes } from 'firebase/firestore';
 import { db } from '../firebase';
 import { startRound, addDraftUser, removeDraftUser, resetDraft, setPhase, importHistoricalSeason } from '../services/draftService';
 import './AdminPage.css';
@@ -99,57 +99,67 @@ export default function AdminPage() {
       const data = parseCSV(text);
 
       const currentYear = parseInt(currentSeasonId) || 2026;
-      const horsesPath = `seasons/${currentSeasonId}/horses`;
-      const BATCH_SIZE = 500;
-      let uploaded = 0;
 
-      for (let i = 0; i < data.length; i += BATCH_SIZE) {
-        const batch = writeBatch(db);
-        const chunk = data.slice(i, i + BATCH_SIZE);
+      const horses = [];
+      data.forEach((row) => {
+        const regNum = row['登録番号'];
+        if (!regNum) return;
 
-        chunk.forEach((row) => {
-          const regNum = row['登録番号'];
-          if (!regNum) return;
+        const defaultName = row['母'] ? `${row['母']}の${currentYear}` : '';
+        const horseName = row['馬名'] || row['(母名+生年)'] || defaultName;
+        const netkeibaUrl = regNum ? `https://db.netkeiba.com/horse/${regNum}/` : '';
 
-          const defaultName = row['母'] ? `${row['母']}の${currentYear}` : '';
-          const horseName = row['馬名'] || row['(母名+生年)'] || defaultName;
-          const netkeibaUrl = regNum ? `https://db.netkeiba.com/horse/${regNum}/` : '';
-
-          const horseData = {
-            登録番号: regNum,
-            馬名: horseName,
-            '(母名+生年)': row['(母名+生年)'] || '',
-            性別: row['性別'] || '',
-            毛色: row['毛色'] || '',
-            父: row['父'] || '',
-            母: row['母'] || '',
-            母父: row['母父'] || '',
-            調教師: row['調教師'] || '',
-            東西: row['東西'] || '',
-            生産者: row['生産者'] || '',
-            馬主: row['馬主'] || '',
-            リンク: row['url'] || netkeibaUrl,
-            updatedAt: new Date(),
-          };
-
-          const docRef = doc(db, horsesPath, regNum);
-          batch.set(docRef, horseData);
-          uploaded++;
+        horses.push({
+          登録番号: regNum,
+          馬名: horseName,
+          '(母名+生年)': row['(母名+生年)'] || '',
+          性別: row['性別'] || '',
+          毛色: row['毛色'] || '',
+          父: row['父'] || '',
+          母: row['母'] || '',
+          母父: row['母父'] || '',
+          調教師: row['調教師'] || '',
+          東西: row['東西'] || '',
+          生産者: row['生産者'] || '',
+          馬主: row['馬主'] || '',
+          リンク: row['url'] || netkeibaUrl,
         });
+      });
 
-        await batch.commit();
+      // JSON化 → gzip 圧縮 → Firestore Bytes として1ドキュメントに保存
+      const json = JSON.stringify(horses);
+      const compressedStream = new Blob([json])
+        .stream()
+        .pipeThrough(new CompressionStream('gzip'));
+      const compressedBuffer = await new Response(compressedStream).arrayBuffer();
+      const compressedBytes = new Uint8Array(compressedBuffer);
+
+      // Firestoreドキュメント上限は 1,048,576 bytes。フィールド等のオーバーヘッドを考慮し1MBで弾く。
+      const MAX_BYTES = 1_000_000;
+      if (compressedBytes.byteLength > MAX_BYTES) {
+        throw new Error(
+          `圧縮後サイズ ${compressedBytes.byteLength} bytes が上限 (${MAX_BYTES}) を超えています。データ分割対応が必要です。`
+        );
       }
 
-      // dataVersionを更新
+      const snapshotRef = doc(db, `seasons/${currentSeasonId}/snapshots`, 'horses');
+      await setDoc(snapshotRef, {
+        data: Bytes.fromUint8Array(compressedBytes),
+        count: horses.length,
+        compressedSize: compressedBytes.byteLength,
+        updatedAt: new Date(),
+      });
+
+      const uploaded = horses.length;
+
+      // 初回シーズン作成時のためにdraft_settingsを保証
       const settingsRef = doc(db, `seasons/${currentSeasonId}/draft_settings`, 'current');
       const settingsSnap = await getDoc(settingsRef);
-      const currentVersion = settingsSnap.exists() ? (settingsSnap.data().dataVersion || 0) : 0;
       await setDoc(settingsRef, {
         ...(settingsSnap.exists() ? settingsSnap.data() : {}),
         currentRound: settingsSnap.exists() ? settingsSnap.data().currentRound : 1,
         isRunning: settingsSnap.exists() ? settingsSnap.data().isRunning : false,
         maxRounds: 10,
-        dataVersion: currentVersion + 1,
       }, { merge: true });
 
       // シーズン情報を作成/更新
@@ -174,7 +184,7 @@ export default function AdminPage() {
 
       setUploadResult({
         type: 'success',
-        message: `${uploaded}件の馬データをアップロードしました（Season: ${currentSeasonId}）`,
+        message: `${uploaded}件の馬データをアップロードしました（圧縮: ${(compressedBytes.byteLength / 1024).toFixed(1)} KB / Season: ${currentSeasonId}）`,
       });
     } catch (error) {
       console.error('アップロードエラー:', error);
