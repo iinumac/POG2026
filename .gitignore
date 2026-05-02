@@ -45,6 +45,12 @@ Thumbs.db
 # Legacy project
 OLD_POG2025/
 
+# Local design reference (applied into code)
+ClaudeDesign/
+
+# Stray root lockfile (draft/package-lock.json is the real one)
+/package-lock.json
+
 # Temporary files
 tmp/
 *.local
