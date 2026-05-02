@@ -1,8 +1,10 @@
 // 指名結果発表画面 — v2 フルスクリーン + 管理者フッター
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import ParticipantCard from '../components/ParticipantCard';
 import ConfirmModal from '../components/ConfirmModal';
+import RevealSpotlight from '../components/RevealSpotlight';
+import { speak } from '../utils/announceReveal';
 import { useDraftState } from '../hooks/useDraftState';
 import { useAuth } from '../contexts/AuthContext';
 import { useSeason } from '../contexts/SeasonContext';
@@ -26,6 +28,21 @@ export default function DraftResultPage() {
   const [processing, setProcessing] = useState(false);
   const [roundTransition, setRoundTransition] = useState(null);
 
+  // スポットライト演出（「次を公開」での1件発表時のみ）
+  const [pendingReveals, setPendingReveals] = useState([]);
+  const [activeReveal, setActiveReveal] = useState(null);
+  const prevRevealedIdsRef = useRef(null); // null = 初回スキップ用
+  const [muted, setMuted] = useState(() => {
+    try { return localStorage.getItem('revealMuted') === '1'; } catch { return false; }
+  });
+  const toggleMuted = () => {
+    setMuted((m) => {
+      const next = !m;
+      try { localStorage.setItem('revealMuted', next ? '1' : '0'); } catch { /* noop */ }
+      return next;
+    });
+  };
+
   const currentRound = draftSettings?.currentRound || 1;
   const phase = draftSettings?.phase || 'waiting';
   const conflicts = getConflicts();
@@ -43,6 +60,92 @@ export default function DraftResultPage() {
     }, 3000);
     return () => { clearTimeout(nextTimer); clearTimeout(clearTimer); };
   }, [roundTransition?.fromRound]);
+
+  // 単発の reveal を検知 → スポットライトキューに積む（一括公開は除外）
+  useEffect(() => {
+    const currentIds = new Set(currentRoundStatuses.filter((s) => s.isRevealed).map((s) => s.id));
+    if (prevRevealedIdsRef.current === null) {
+      // 初回ロード（既存の reveal は演出しない）
+      prevRevealedIdsRef.current = currentIds;
+      return;
+    }
+    const newlyRevealedIds = [...currentIds].filter((id) => !prevRevealedIdsRef.current.has(id));
+    if (newlyRevealedIds.length === 1) {
+      const newStatus = currentRoundStatuses.find((s) => s.id === newlyRevealedIds[0]);
+      if (newStatus) {
+        setPendingReveals((prev) => [...prev, newStatus]);
+      }
+    }
+    // 一括公開（newlyRevealedIds.length >= 2）の場合はスキップ
+    prevRevealedIdsRef.current = currentIds;
+  }, [currentRoundStatuses]);
+
+  // キューから順番にスポットライト表示
+  useEffect(() => {
+    if (!activeReveal && pendingReveals.length > 0) {
+      setActiveReveal(pendingReveals[0]);
+      setPendingReveals((prev) => prev.slice(1));
+    }
+  }, [activeReveal, pendingReveals]);
+
+  const handleSpotlightDone = () => setActiveReveal(null);
+
+  // 巡目確定 / 全員指名完了の読み上げ
+  const prevRoundRef = useRef(null);
+  const prevPhaseRef = useRef(null);
+  const prevAllNominatedRef = useRef(null);
+  const roundSpeechCancelRef = useRef(null);
+  useEffect(() => {
+    if (prevRoundRef.current === null) {
+      // 初回ロード: 既存の状態は読み上げない
+      prevRoundRef.current = currentRound;
+      prevPhaseRef.current = phase;
+      return;
+    }
+    const prevRound = prevRoundRef.current;
+    const prevPhase = prevPhaseRef.current;
+
+    let text = null;
+    if (currentRound > prevRound) {
+      // 通常の巡目進行
+      text = `${prevRound}巡目を確定しました。次は${currentRound}巡目の指名です。`;
+    } else if (phase === 'completed' && prevPhase !== 'completed') {
+      // 最終巡確定（全巡完了）
+      text = `${currentRound}巡目を確定しました。全巡完了です。`;
+    }
+    // 音声は管理者画面でのみ再生（一堂に介して実施するため、参加者端末では再生しない）
+    if (text && !muted && isAdmin) {
+      if (roundSpeechCancelRef.current) roundSpeechCancelRef.current();
+      roundSpeechCancelRef.current = speak(text);
+    }
+    prevRoundRef.current = currentRound;
+    prevPhaseRef.current = phase;
+  }, [currentRound, phase, muted, isAdmin]);
+  useEffect(() => {
+    return () => {
+      if (roundSpeechCancelRef.current) roundSpeechCancelRef.current();
+    };
+  }, []);
+
+  // 全員の指名が完了したタイミングの読み上げ
+  useEffect(() => {
+    if (prevAllNominatedRef.current === null) {
+      // 初回ロード: 既存状態は読み上げない
+      prevAllNominatedRef.current = allNominated;
+      return;
+    }
+    // false → true への遷移を検知
+    if (allNominated && !prevAllNominatedRef.current) {
+      if (!muted && isAdmin) {
+        if (roundSpeechCancelRef.current) roundSpeechCancelRef.current();
+        roundSpeechCancelRef.current = speak('参加者全員の指名が完了しました。');
+      }
+    }
+    prevAllNominatedRef.current = allNominated;
+  }, [allNominated, muted, isAdmin]);
+  const activeRevealUser = activeReveal
+    ? draftUsers.find((u) => u.id === activeReveal.nominatedBy)
+    : null;
 
   const getParticipantNomination = (userId) => {
     return currentRoundStatuses.find((s) => s.nominatedBy === userId);
@@ -113,6 +216,16 @@ export default function DraftResultPage() {
             {phase === 'waiting' && '待機中'}
             {phase === 'completed' && 'ドラフト完了'}
           </span>
+          {isAdmin && (
+            <button
+              type="button"
+              className="dr-mute-toggle"
+              onClick={toggleMuted}
+              title={muted ? '発表時の音声を有効化' : '発表時の音声をミュート'}
+            >
+              {muted ? '🔇 ミュート中' : '🔊 音声ON'}
+            </button>
+          )}
         </div>
 
         {/* 参加者グリッド — 画面いっぱい */}
@@ -224,6 +337,16 @@ export default function DraftResultPage() {
           </div>
         )}
       </ConfirmModal>
+
+      {/* 発表スポットライト（音声は管理者画面のみ） */}
+      {activeReveal && (
+        <RevealSpotlight
+          nomination={activeReveal}
+          user={activeRevealUser}
+          muted={muted || !isAdmin}
+          onDone={handleSpotlightDone}
+        />
+      )}
 
       {/* トランジション */}
       {roundTransition && (

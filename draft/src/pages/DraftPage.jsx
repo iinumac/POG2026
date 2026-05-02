@@ -36,6 +36,7 @@ export default function DraftPage() {
   const [submitting, setSubmitting] = useState(false);
   const [source, setSource] = useState('favorites');
   const [query, setQuery] = useState('');
+  const [comment, setComment] = useState('');
 
   const isRunning = draftSettings?.isRunning;
   const currentRound = draftSettings?.currentRound || 1;
@@ -77,9 +78,10 @@ export default function DraftPage() {
         馬主: selectedHorse.馬主 || selectedHorse.owner || '',
         母名生年: selectedHorse.母名生年 || '',
       };
-      await submitNomination(horseData);
+      await submitNomination(horseData, comment.trim());
       setSelectedHorse(null);
       setShowConfirm(false);
+      setComment('');
     } catch (error) {
       console.error('指名エラー:', error);
     } finally {
@@ -404,7 +406,7 @@ export default function DraftPage() {
         title="指名確認"
         message={`「${horseName(selectedHorse)}」を${currentRound}巡目で指名しますか？`}
         onConfirm={handleConfirm}
-        onCancel={() => setShowConfirm(false)}
+        onCancel={() => { setShowConfirm(false); setComment(''); }}
         confirmLabel={submitting ? '送信中...' : '指名を確定する'}
       >
         {selectedHorse && (
@@ -414,6 +416,21 @@ export default function DraftPage() {
             <p>母父: {selectedHorse.母父 || selectedHorse.motherFatherName || '不明'}</p>
           </div>
         )}
+        <div className="confirm-comment-field">
+          <label htmlFor="nomination-comment" className="confirm-comment-label">
+            指名コメント<span className="confirm-comment-hint">（任意・発表時に読み上げます）</span>
+          </label>
+          <textarea
+            id="nomination-comment"
+            className="confirm-comment-input"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            maxLength={200}
+            rows={3}
+            placeholder="この馬を選んだ理由や意気込みなど"
+          />
+          <div className="confirm-comment-counter">{comment.length} / 200</div>
+        </div>
       </ConfirmModal>
     </>
   );

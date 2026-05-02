@@ -87,7 +87,7 @@ export function useDraftState() {
   }, [seasonBase]);
 
   // 指名を送信
-  const submitNomination = useCallback(async (horse) => {
+  const submitNomination = useCallback(async (horse, comment = '') => {
     if (!user || !draftSettings) return;
     const horseId = horse.登録番号 || horse.id;
     const docId = `${horseId}-${user.uid}`;
@@ -103,6 +103,7 @@ export function useDraftState() {
       region: horse.東西 || '',
       breeder: horse.生産者 || '',
       owner: horse.馬主 || '',
+      comment: comment || '',
       nominatedBy: user.uid,
       round: draftSettings.currentRound,
       status: 'nominated',

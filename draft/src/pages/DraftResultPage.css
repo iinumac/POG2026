@@ -46,6 +46,22 @@
   letter-spacing: 1px;
 }
 
+.dr-mute-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dr-mute-toggle:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
 /* ────── 参加者グリッド — 画面いっぱい ────── */
 .dr-grid {
   flex: 1;

@@ -482,6 +482,51 @@
 
 .confirm-horse-detail p { margin-bottom: 4px; }
 
+.confirm-comment-field {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.confirm-comment-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.confirm-comment-hint {
+  margin-left: 6px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-text-muted, #888);
+}
+
+.confirm-comment-input {
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border, #d0d0d0);
+  border-radius: var(--radius-sm, 6px);
+  background: var(--color-bg-input, #fff);
+  color: var(--color-text-primary);
+  resize: vertical;
+}
+
+.confirm-comment-input:focus {
+  outline: none;
+  border-color: var(--color-accent-gold, #c89b3c);
+  box-shadow: 0 0 0 2px rgba(200, 155, 60, 0.2);
+}
+
+.confirm-comment-counter {
+  align-self: flex-end;
+  font-size: 10px;
+  color: var(--color-text-muted, #888);
+}
+
 /* ════════ 待機中ビュー（獲得決定表示） ════════ */
 .v2-waiting-layout {
   display: grid;

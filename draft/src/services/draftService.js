@@ -134,6 +134,7 @@ export async function confirmRound(seasonId, confirmedStatuses, draftUsers) {
       region: status.region || '',
       breeder: status.breeder || '',
       owner: status.owner || '',
+      comment: status.comment || '',
       round: status.round,
       confirmedAt: new Date(),
     });
