@@ -191,6 +191,101 @@ export async function removeDraftUser(seasonId, userId) {
 }
 
 /**
+ * 日刊競馬POG ランキングデータを Firestore に保存
+ * @param {string} seasonId
+ * @param {Array} rankingArray - [{ rank, regNum, horseName, gender, trainer, nominees }]
+ * @returns {{ count: number }}
+ */
+export async function uploadNikkanRanking(seasonId, rankingArray) {
+  const rankings = {};
+  rankingArray.forEach((r) => {
+    if (r.regNum) {
+      rankings[r.regNum] = { rank: r.rank, nominees: r.nominees };
+    }
+  });
+
+  const ref = doc(db, `seasons/${seasonId}/external_data`, 'nikkan_ranking');
+  await setDoc(ref, {
+    rankings,
+    count: rankingArray.length,
+    updatedAt: new Date(),
+  });
+
+  return { count: rankingArray.length };
+}
+
+/**
+ * CSVアップロード後にお気に入りデータを馬マスタと同期
+ * マスタ側に値がある項目のみ上書きし、評価・メモ・優先順位は維持する
+ * @param {string} seasonId
+ * @param {Array} horsesArray - アップロード済みの馬データ配列（{登録番号, 馬名, 父, ...}）
+ * @returns {{ count: number, details: Array }}
+ */
+export async function syncFavoritesWithMaster(seasonId, horsesArray) {
+  // 馬データをマップ化
+  const horseMap = {};
+  horsesArray.forEach((h) => {
+    const id = h.登録番号 || h.id;
+    if (id) horseMap[id] = h;
+  });
+
+  // 全ユーザーを取得
+  const usersRef = collection(db, 'users');
+  const usersSnap = await getDocs(usersRef);
+
+  const updates = [];
+  const details = [];
+
+  for (const userDoc of usersSnap.docs) {
+    const favsRef = collection(db, `seasons/${seasonId}/favorites/${userDoc.id}/horses`);
+    const favsSnap = await getDocs(favsRef);
+
+    favsSnap.docs.forEach((favDoc) => {
+      const favData = favDoc.data();
+      const umaId = favData.umaId || favDoc.id;
+      const horse = horseMap[umaId];
+      if (!horse) return;
+
+      const patch = {};
+      const changes = [];
+      const check = (masterKey, favKey) => {
+        if (horse[masterKey] && horse[masterKey] !== favData[favKey]) {
+          patch[favKey] = horse[masterKey];
+          changes.push({ field: masterKey, from: favData[favKey] || '', to: horse[masterKey] });
+        }
+      };
+
+      check('馬名', 'horseName');
+      check('父', 'fatherName');
+      check('母', 'motherName');
+      check('母父', 'motherFatherName');
+      check('性別', 'gender');
+      check('調教師', 'trainer');
+      check('東西', 'region');
+      check('生産者', 'breeder');
+      check('馬主', 'owner');
+
+      if (changes.length > 0) {
+        updates.push({ ref: favDoc.ref, data: patch });
+        details.push({ userId: userDoc.id, horseName: horse.馬名 || favData.horseName, changes });
+      }
+    });
+  }
+
+  // バッチ書き込み（上限500件ずつ）
+  const BATCH_SIZE = 500;
+  for (let i = 0; i < updates.length; i += BATCH_SIZE) {
+    const batch = writeBatch(db);
+    updates.slice(i, i + BATCH_SIZE).forEach(({ ref, data }) => {
+      batch.update(ref, data);
+    });
+    await batch.commit();
+  }
+
+  return { count: updates.length, details };
+}
+
+/**
  * 過去シーズンデータをTSV形式でインポート
  * TSV形式: ユーザー名\t馬名\t母名\t誕生年\tコメント
  * ユーザー名は空行で前の値を引き継ぐ

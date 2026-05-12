@@ -1,0 +1,3202 @@
+[
+  {
+    "rank": 1,
+    "regNum": "2024106314",
+    "horseName": "エルドボルグ",
+    "gender": "牡",
+    "trainer": "斉藤崇史",
+    "nominees": 183
+  },
+  {
+    "rank": 2,
+    "regNum": "2024106624",
+    "horseName": "ジャンゴッド",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 148
+  },
+  {
+    "rank": 3,
+    "regNum": "2024106496",
+    "horseName": "ソブリオ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 119
+  },
+  {
+    "rank": 4,
+    "regNum": "2024106452",
+    "horseName": "チェスティーノ",
+    "gender": "牡",
+    "trainer": "鹿戸雄一",
+    "nominees": 113
+  },
+  {
+    "rank": 5,
+    "regNum": "2024106654",
+    "horseName": "サンタンジェロ",
+    "gender": "牝",
+    "trainer": "須貝尚介",
+    "nominees": 104
+  },
+  {
+    "rank": 6,
+    "regNum": "2024106675",
+    "horseName": "ラッキースパークル",
+    "gender": "牡",
+    "trainer": "松永幹夫",
+    "nominees": 95
+  },
+  {
+    "rank": 7,
+    "regNum": "2024106662",
+    "horseName": "ダノンダックス",
+    "gender": "牡",
+    "trainer": "田中博康",
+    "nominees": 93
+  },
+  {
+    "rank": 8,
+    "regNum": "2024106292",
+    "horseName": "ノイエルング",
+    "gender": "牝",
+    "trainer": "斉藤崇史",
+    "nominees": 93
+  },
+  {
+    "rank": 9,
+    "regNum": "2024106164",
+    "horseName": "レジューノワール",
+    "gender": "牝",
+    "trainer": "木村哲也",
+    "nominees": 76
+  },
+  {
+    "rank": 10,
+    "regNum": "2024106670",
+    "horseName": "ラガリーガ",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 74
+  },
+  {
+    "rank": 11,
+    "regNum": "2024106368",
+    "horseName": "ダイナマイク",
+    "gender": "牡",
+    "trainer": "中内田充",
+    "nominees": 72
+  },
+  {
+    "rank": 12,
+    "regNum": "2024107154",
+    "horseName": "リボンロード",
+    "gender": "牡",
+    "trainer": "上原佑紀",
+    "nominees": 66
+  },
+  {
+    "rank": 13,
+    "regNum": "2024106349",
+    "horseName": "エクアトーレ",
+    "gender": "牝",
+    "trainer": "田中博康",
+    "nominees": 63
+  },
+  {
+    "rank": 14,
+    "regNum": "2024106455",
+    "horseName": "ノヴァヴェローチェ",
+    "gender": "牡",
+    "trainer": "上村洋行",
+    "nominees": 60
+  },
+  {
+    "rank": 15,
+    "regNum": "2024106664",
+    "horseName": "ユタライト",
+    "gender": "牝",
+    "trainer": "宮田敬介",
+    "nominees": 60
+  },
+  {
+    "rank": 16,
+    "regNum": "2024106622",
+    "horseName": "スタニスラス",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 58
+  },
+  {
+    "rank": 17,
+    "regNum": "2024106175",
+    "horseName": "ホウオウモノポリー",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 57
+  },
+  {
+    "rank": 18,
+    "regNum": "2024106183",
+    "horseName": "ウィクフォード",
+    "gender": "牡",
+    "trainer": "高野友和",
+    "nominees": 56
+  },
+  {
+    "rank": 19,
+    "regNum": "2024106381",
+    "horseName": "アステリアドンナ",
+    "gender": "牝",
+    "trainer": "斉藤崇史",
+    "nominees": 54
+  },
+  {
+    "rank": 20,
+    "regNum": "2024106115",
+    "horseName": "イルリサット",
+    "gender": "牝",
+    "trainer": "菊沢隆徳",
+    "nominees": 54
+  },
+  {
+    "rank": 21,
+    "regNum": "2024106161",
+    "horseName": "ジョドレルバンク",
+    "gender": "牡",
+    "trainer": "武井亮",
+    "nominees": 53
+  },
+  {
+    "rank": 22,
+    "regNum": "2024106391",
+    "horseName": "シャムリベルク",
+    "gender": "牝",
+    "trainer": "手塚貴久",
+    "nominees": 52
+  },
+  {
+    "rank": 23,
+    "regNum": "2024106139",
+    "horseName": "ヴェルバーニア",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 50
+  },
+  {
+    "rank": 24,
+    "regNum": "2024106538",
+    "horseName": "フィリオソラーレ",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 50
+  },
+  {
+    "rank": 25,
+    "regNum": "2024106301",
+    "horseName": "リサナウト",
+    "gender": "牝",
+    "trainer": "黒岩陽一",
+    "nominees": 50
+  },
+  {
+    "rank": 26,
+    "regNum": "2024106309",
+    "horseName": "コナパームス",
+    "gender": "牡",
+    "trainer": "森一誠",
+    "nominees": 47
+  },
+  {
+    "rank": 27,
+    "regNum": "2024106505",
+    "horseName": "エターナルバラード",
+    "gender": "牝",
+    "trainer": "武幸四郎",
+    "nominees": 45
+  },
+  {
+    "rank": 28,
+    "regNum": "2024105986",
+    "horseName": "リーベスグルース",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 45
+  },
+  {
+    "rank": 29,
+    "regNum": "2024106684",
+    "horseName": "キングリア",
+    "gender": "牡",
+    "trainer": "中内田充",
+    "nominees": 41
+  },
+  {
+    "rank": 30,
+    "regNum": "2024106970",
+    "horseName": "アンドロニクス",
+    "gender": "牡",
+    "trainer": "中内田充",
+    "nominees": 40
+  },
+  {
+    "rank": 31,
+    "regNum": "2024106366",
+    "horseName": "ラトナジャーラ",
+    "gender": "牝",
+    "trainer": "斉藤崇史",
+    "nominees": 39
+  },
+  {
+    "rank": 32,
+    "regNum": "2024106436",
+    "horseName": "レイデアルマス",
+    "gender": "牡",
+    "trainer": "杉山佳明",
+    "nominees": 39
+  },
+  {
+    "rank": 33,
+    "regNum": "2024106969",
+    "horseName": "メアグローリア",
+    "gender": "牝",
+    "trainer": "斉藤崇史",
+    "nominees": 36
+  },
+  {
+    "rank": 34,
+    "regNum": "2024107026",
+    "horseName": "ベラジオパンテーラ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 36
+  },
+  {
+    "rank": 35,
+    "regNum": "2024106356",
+    "horseName": "ブックオブケルズ",
+    "gender": "牡",
+    "trainer": "高野友和",
+    "nominees": 35
+  },
+  {
+    "rank": 36,
+    "regNum": "2024106494",
+    "horseName": "ミッドナイトフレア",
+    "gender": "牡",
+    "trainer": "池添学",
+    "nominees": 35
+  },
+  {
+    "rank": 37,
+    "regNum": "2024106553",
+    "horseName": "ディヴァインスペル",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 35
+  },
+  {
+    "rank": 38,
+    "regNum": "2024106177",
+    "horseName": "フェイムシーカー",
+    "gender": "牡",
+    "trainer": "吉岡辰弥",
+    "nominees": 31
+  },
+  {
+    "rank": 39,
+    "regNum": "2024106187",
+    "horseName": "ベルコート",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 31
+  },
+  {
+    "rank": 40,
+    "regNum": "2024106304",
+    "horseName": "コルシャヴィート",
+    "gender": "牡",
+    "trainer": "森一誠",
+    "nominees": 30
+  },
+  {
+    "rank": 41,
+    "regNum": "2024106294",
+    "horseName": "アレオクール",
+    "gender": "牝",
+    "trainer": "池添学",
+    "nominees": 30
+  },
+  {
+    "rank": 42,
+    "regNum": "2024106316",
+    "horseName": "キューティボンド",
+    "gender": "牝",
+    "trainer": "福永祐一",
+    "nominees": 30
+  },
+  {
+    "rank": 43,
+    "regNum": "2024106304",
+    "horseName": "コルシャヴィート",
+    "gender": "牡",
+    "trainer": "森一誠",
+    "nominees": 30
+  },
+  {
+    "rank": 44,
+    "regNum": "2024107196",
+    "horseName": "ゴールデンプロミス",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 29
+  },
+  {
+    "rank": 45,
+    "regNum": "2024105942",
+    "horseName": "ダノンフィガロ",
+    "gender": "牡",
+    "trainer": "池江泰寿",
+    "nominees": 29
+  },
+  {
+    "rank": 46,
+    "regNum": "2024106297",
+    "horseName": "スプレマレイナ",
+    "gender": "牝",
+    "trainer": "木村哲也",
+    "nominees": 27
+  },
+  {
+    "rank": 47,
+    "regNum": "2024104316",
+    "horseName": "ジャスティンモナコ",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 27
+  },
+  {
+    "rank": 48,
+    "regNum": "2024106607",
+    "horseName": "バイコーンハット",
+    "gender": "牡",
+    "trainer": "堀宣行",
+    "nominees": 26
+  },
+  {
+    "rank": 49,
+    "regNum": "2024106142",
+    "horseName": "ククイプカ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 25
+  },
+  {
+    "rank": 50,
+    "regNum": "2024106690",
+    "horseName": "リスグロワール",
+    "gender": "牝",
+    "trainer": "矢作芳人",
+    "nominees": 25
+  },
+  {
+    "rank": 51,
+    "regNum": "2024106657",
+    "horseName": "タクティシアン",
+    "gender": "牡",
+    "trainer": "森一誠",
+    "nominees": 25
+  },
+  {
+    "rank": 52,
+    "regNum": "2024106425",
+    "horseName": "オールシティキング",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 25
+  },
+  {
+    "rank": 53,
+    "regNum": "2024106578",
+    "horseName": "テンポアニマート",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 24
+  },
+  {
+    "rank": 54,
+    "regNum": "2024106704",
+    "horseName": "ハッピーダイフゴー",
+    "gender": "牡",
+    "trainer": "斎藤誠",
+    "nominees": 24
+  },
+  {
+    "rank": 55,
+    "regNum": "2024105872",
+    "horseName": "ブレイクアウェイ",
+    "gender": "牡",
+    "trainer": "上村洋行",
+    "nominees": 24
+  },
+  {
+    "rank": 56,
+    "regNum": "2024106211",
+    "horseName": "セントベルナール",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 24
+  },
+  {
+    "rank": 57,
+    "regNum": "2024106748",
+    "horseName": "カマラデロボス",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 24
+  },
+  {
+    "rank": 58,
+    "regNum": "2024106456",
+    "horseName": "フェイトロード",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 24
+  },
+  {
+    "rank": 59,
+    "regNum": "2024106655",
+    "horseName": "モシーンの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 23
+  },
+  {
+    "rank": 60,
+    "regNum": "2024106741",
+    "horseName": "トゥーレジット",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 23
+  },
+  {
+    "rank": 61,
+    "regNum": "2024105729",
+    "horseName": "プロテウス",
+    "gender": "牡",
+    "trainer": "田中博康",
+    "nominees": 21
+  },
+  {
+    "rank": 62,
+    "regNum": "2024106080",
+    "horseName": "ルーメンルーナエ",
+    "gender": "牡",
+    "trainer": "中内田充",
+    "nominees": 21
+  },
+  {
+    "rank": 63,
+    "regNum": "2024110013",
+    "horseName": "エルゴスフィア",
+    "gender": "牡",
+    "trainer": "中内田充",
+    "nominees": 20
+  },
+  {
+    "rank": 64,
+    "regNum": "2024105859",
+    "horseName": "ラニアケア",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 20
+  },
+  {
+    "rank": 65,
+    "regNum": "2024106620",
+    "horseName": "マルケジーナ",
+    "gender": "牝",
+    "trainer": "杉山晴紀",
+    "nominees": 20
+  },
+  {
+    "rank": 66,
+    "regNum": "2024106386",
+    "horseName": "エスクアドラ",
+    "gender": "牡",
+    "trainer": "鹿戸雄一",
+    "nominees": 20
+  },
+  {
+    "rank": 67,
+    "regNum": "2024104965",
+    "horseName": "ワイドジーガー",
+    "gender": "牡",
+    "trainer": "福永祐一",
+    "nominees": 19
+  },
+  {
+    "rank": 68,
+    "regNum": "2024106614",
+    "horseName": "ジーティーサクラ",
+    "gender": "牝",
+    "trainer": "吉岡辰弥",
+    "nominees": 18
+  },
+  {
+    "rank": 69,
+    "regNum": "2024106982",
+    "horseName": "レッジェランツァ",
+    "gender": "牡",
+    "trainer": "田中博康",
+    "nominees": 18
+  },
+  {
+    "rank": 70,
+    "regNum": "2024106621",
+    "horseName": "マルスレジーナ",
+    "gender": "牝",
+    "trainer": "森一誠",
+    "nominees": 18
+  },
+  {
+    "rank": 71,
+    "regNum": "2024106556",
+    "horseName": "スノーウィスパー",
+    "gender": "牝",
+    "trainer": "須貝尚介",
+    "nominees": 17
+  },
+  {
+    "rank": 72,
+    "regNum": "2024106557",
+    "horseName": "ノヴァルクス",
+    "gender": "牡",
+    "trainer": "鹿戸雄一",
+    "nominees": 17
+  },
+  {
+    "rank": 73,
+    "regNum": "2024106422",
+    "horseName": "ジーティーギャング",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 17
+  },
+  {
+    "rank": 74,
+    "regNum": "2024105289",
+    "horseName": "マイクストーリー",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 17
+  },
+  {
+    "rank": 75,
+    "regNum": "2024106646",
+    "horseName": "スターバーナー",
+    "gender": "牝",
+    "trainer": "武幸四郎",
+    "nominees": 17
+  },
+  {
+    "rank": 76,
+    "regNum": "2024105816",
+    "horseName": "フォコンノワール",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 17
+  },
+  {
+    "rank": 77,
+    "regNum": "2024107027",
+    "horseName": "キトゥンズクラフト",
+    "gender": "牡",
+    "trainer": "池江泰寿",
+    "nominees": 16
+  },
+  {
+    "rank": 78,
+    "regNum": "2024106757",
+    "horseName": "エウゲニオス",
+    "gender": "牡",
+    "trainer": "鹿戸雄一",
+    "nominees": 16
+  },
+  {
+    "rank": 79,
+    "regNum": "2024105835",
+    "horseName": "グロスミッシェル",
+    "gender": "牝",
+    "trainer": "福永祐一",
+    "nominees": 16
+  },
+  {
+    "rank": 80,
+    "regNum": "2024106219",
+    "horseName": "エスポワールの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 16
+  },
+  {
+    "rank": 81,
+    "regNum": "2024106757",
+    "horseName": "エウゲニオス",
+    "gender": "牡",
+    "trainer": "鹿戸雄一",
+    "nominees": 16
+  },
+  {
+    "rank": 82,
+    "regNum": "2024105835",
+    "horseName": "グロスミッシェル",
+    "gender": "牝",
+    "trainer": "福永祐一",
+    "nominees": 16
+  },
+  {
+    "rank": 83,
+    "regNum": "2024106266",
+    "horseName": "ジェニスタ",
+    "gender": "牝",
+    "trainer": "宮田敬介",
+    "nominees": 15
+  },
+  {
+    "rank": 84,
+    "regNum": "2024105920",
+    "horseName": "ヴェルソドルチェ",
+    "gender": "牝",
+    "trainer": "茶木太樹",
+    "nominees": 15
+  },
+  {
+    "rank": 85,
+    "regNum": "2024106725",
+    "horseName": "ジャロロッソ",
+    "gender": "牡",
+    "trainer": "上原佑紀",
+    "nominees": 15
+  },
+  {
+    "rank": 86,
+    "regNum": "2024106674",
+    "horseName": "ブレイクガール",
+    "gender": "牝",
+    "trainer": "武幸四郎",
+    "nominees": 15
+  },
+  {
+    "rank": 87,
+    "regNum": "2024106612",
+    "horseName": "アストラルライト",
+    "gender": "牝",
+    "trainer": "安田翔伍",
+    "nominees": 15
+  },
+  {
+    "rank": 88,
+    "regNum": "2024106973",
+    "horseName": "フェステグラウベ",
+    "gender": "牡",
+    "trainer": "堀宣行",
+    "nominees": 15
+  },
+  {
+    "rank": 89,
+    "regNum": "2024107012",
+    "horseName": "ティシポネ",
+    "gender": "牝",
+    "trainer": "森一誠",
+    "nominees": 15
+  },
+  {
+    "rank": 90,
+    "regNum": "2024106382",
+    "horseName": "ジュンキング",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 15
+  },
+  {
+    "rank": 91,
+    "regNum": "2024106667",
+    "horseName": "オディオペルデレ",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 15
+  },
+  {
+    "rank": 92,
+    "regNum": "2024106519",
+    "horseName": "レイアパショナード",
+    "gender": "牡",
+    "trainer": "福永祐一",
+    "nominees": 15
+  },
+  {
+    "rank": 93,
+    "regNum": "2024106094",
+    "horseName": "ルージュアルシーヴ",
+    "gender": "牝",
+    "trainer": "友道康夫",
+    "nominees": 15
+  },
+  {
+    "rank": 94,
+    "regNum": "2024105298",
+    "horseName": "ロードデルフィロ",
+    "gender": "牡",
+    "trainer": "中内田充",
+    "nominees": 15
+  },
+  {
+    "rank": 95,
+    "regNum": "2024106573",
+    "horseName": "ファジルノーア",
+    "gender": "牝",
+    "trainer": "田中博康",
+    "nominees": 14
+  },
+  {
+    "rank": 96,
+    "regNum": "2024105931",
+    "horseName": "ポッドコーディア",
+    "gender": "牡",
+    "trainer": "上原佑紀",
+    "nominees": 14
+  },
+  {
+    "rank": 97,
+    "regNum": "2024106609",
+    "horseName": "チャランダマルツ",
+    "gender": "牝",
+    "trainer": "上原佑紀",
+    "nominees": 14
+  },
+  {
+    "rank": 98,
+    "regNum": "2024106339",
+    "horseName": "ランブルトーン",
+    "gender": "牝",
+    "trainer": "中内田充",
+    "nominees": 14
+  },
+  {
+    "rank": 99,
+    "regNum": "2024100686",
+    "horseName": "クロダテ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 14
+  },
+  {
+    "rank": 100,
+    "regNum": "2024106355",
+    "horseName": "レニュアージュ",
+    "gender": "牝",
+    "trainer": "藤原英昭",
+    "nominees": 14
+  },
+  {
+    "rank": 101,
+    "regNum": "2024106313",
+    "horseName": "コンヴィクションIIの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 14
+  },
+  {
+    "rank": 102,
+    "regNum": "2024106449",
+    "horseName": "レッドインサイト",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 14
+  },
+  {
+    "rank": 103,
+    "regNum": "2024108228",
+    "horseName": "デミアン",
+    "gender": "牡",
+    "trainer": "斎藤誠",
+    "nominees": 14
+  },
+  {
+    "rank": 104,
+    "regNum": "2024106625",
+    "horseName": "ナイトオブマース",
+    "gender": "牝",
+    "trainer": "林徹",
+    "nominees": 13
+  },
+  {
+    "rank": 105,
+    "regNum": "2024106354",
+    "horseName": "ヴェトロテンペスタ",
+    "gender": "牝",
+    "trainer": "田中博康",
+    "nominees": 13
+  },
+  {
+    "rank": 106,
+    "regNum": "2024106629",
+    "horseName": "ミエルモーサ",
+    "gender": "牝",
+    "trainer": "松下武士",
+    "nominees": 13
+  },
+  {
+    "rank": 107,
+    "regNum": "2024106025",
+    "horseName": "シャンデヴァーグ",
+    "gender": "牝",
+    "trainer": "森一誠",
+    "nominees": 13
+  },
+  {
+    "rank": 108,
+    "regNum": "2024102270",
+    "horseName": "ジャスティンニース",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 13
+  },
+  {
+    "rank": 109,
+    "regNum": "2024106168",
+    "horseName": "バティック",
+    "gender": "牝",
+    "trainer": "上村洋行",
+    "nominees": 13
+  },
+  {
+    "rank": 110,
+    "regNum": "2024106533",
+    "horseName": "ロジクラウン",
+    "gender": "牡",
+    "trainer": "須貝尚介",
+    "nominees": 13
+  },
+  {
+    "rank": 111,
+    "regNum": "2024106438",
+    "horseName": "ショウナンガレオン",
+    "gender": "牡",
+    "trainer": "加藤士津",
+    "nominees": 13
+  },
+  {
+    "rank": 112,
+    "regNum": "2024106542",
+    "horseName": "ヤングリッチ",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 13
+  },
+  {
+    "rank": 113,
+    "regNum": "2024106547",
+    "horseName": "ブルーコメット",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 13
+  },
+  {
+    "rank": 114,
+    "regNum": "2024105814",
+    "horseName": "サンリットブーケ",
+    "gender": "牝",
+    "trainer": "堀宣行",
+    "nominees": 13
+  },
+  {
+    "rank": 115,
+    "regNum": "2024105756",
+    "horseName": "アンベールフォート",
+    "gender": "牝",
+    "trainer": "宮田敬介",
+    "nominees": 13
+  },
+  {
+    "rank": 116,
+    "regNum": "2024108263",
+    "horseName": "Anna Lawの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 12
+  },
+  {
+    "rank": 117,
+    "regNum": "2024106136",
+    "horseName": "アドマイヤモカ",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 12
+  },
+  {
+    "rank": 118,
+    "regNum": "2024105873",
+    "horseName": "ボーシュブノワール",
+    "gender": "牝",
+    "trainer": "藤原英昭",
+    "nominees": 12
+  },
+  {
+    "rank": 119,
+    "regNum": "2024108241",
+    "horseName": "Dram Girlの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 12
+  },
+  {
+    "rank": 120,
+    "regNum": "2024106763",
+    "horseName": "ジュベルシャムス",
+    "gender": "牝",
+    "trainer": "木村哲也",
+    "nominees": 12
+  },
+  {
+    "rank": 121,
+    "regNum": "2024106136",
+    "horseName": "アドマイヤモカ",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 12
+  },
+  {
+    "rank": 122,
+    "regNum": "2024108263",
+    "horseName": "Anna Lawの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 12
+  },
+  {
+    "rank": 123,
+    "regNum": "2024105873",
+    "horseName": "ボーシュブノワール",
+    "gender": "牝",
+    "trainer": "藤原英昭",
+    "nominees": 12
+  },
+  {
+    "rank": 124,
+    "regNum": "2024108241",
+    "horseName": "Dram Girlの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 12
+  },
+  {
+    "rank": 125,
+    "regNum": "2024106763",
+    "horseName": "ジュベルシャムス",
+    "gender": "牝",
+    "trainer": "木村哲也",
+    "nominees": 12
+  },
+  {
+    "rank": 126,
+    "regNum": "2024105911",
+    "horseName": "シアルナーレ",
+    "gender": "牡",
+    "trainer": "田中博康",
+    "nominees": 12
+  },
+  {
+    "rank": 127,
+    "regNum": "2024106502",
+    "horseName": "マテンロウアルカナ",
+    "gender": "牡",
+    "trainer": "松永幹夫",
+    "nominees": 12
+  },
+  {
+    "rank": 128,
+    "regNum": "2024106323",
+    "horseName": "サトノカグラ",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 12
+  },
+  {
+    "rank": 129,
+    "regNum": "2024106923",
+    "horseName": "クロワゼレドワ",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 12
+  },
+  {
+    "rank": 130,
+    "regNum": "2024108253",
+    "horseName": "Borgia's Bestの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 11
+  },
+  {
+    "rank": 131,
+    "regNum": "2024102234",
+    "horseName": "オネスティ",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 11
+  },
+  {
+    "rank": 132,
+    "regNum": "2024107242",
+    "horseName": "ジャスティンカンヌ",
+    "gender": "牡",
+    "trainer": "堀宣行",
+    "nominees": 11
+  },
+  {
+    "rank": 133,
+    "regNum": "2024103491",
+    "horseName": "リリークラウド",
+    "gender": "牝",
+    "trainer": "矢作芳人",
+    "nominees": 11
+  },
+  {
+    "rank": 134,
+    "regNum": "2024106287",
+    "horseName": "プルヴィナル",
+    "gender": "牝",
+    "trainer": "栗田徹",
+    "nominees": 11
+  },
+  {
+    "rank": 135,
+    "regNum": "2024105283",
+    "horseName": "ロードマイラヴァー",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 11
+  },
+  {
+    "rank": 136,
+    "regNum": "2024106038",
+    "horseName": "ベルオナチュレル",
+    "gender": "牝",
+    "trainer": "辻野泰之",
+    "nominees": 11
+  },
+  {
+    "rank": 137,
+    "regNum": "2024102505",
+    "horseName": "アストライリス",
+    "gender": "牝",
+    "trainer": "友道康夫",
+    "nominees": 11
+  },
+  {
+    "rank": 138,
+    "regNum": "2024108254",
+    "horseName": "Canada Waterの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 11
+  },
+  {
+    "rank": 139,
+    "regNum": "2024106227",
+    "horseName": "リリックラヴ",
+    "gender": "牝",
+    "trainer": "武幸四郎",
+    "nominees": 11
+  },
+  {
+    "rank": 140,
+    "regNum": "2024106330",
+    "horseName": "サルティリア",
+    "gender": "牝",
+    "trainer": "池添学",
+    "nominees": 11
+  },
+  {
+    "rank": 141,
+    "regNum": "2024106576",
+    "horseName": "ブレイズフォート",
+    "gender": "牡",
+    "trainer": "高野友和",
+    "nominees": 11
+  },
+  {
+    "rank": 142,
+    "regNum": "2024108258",
+    "horseName": "Aniseedの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 11
+  },
+  {
+    "rank": 143,
+    "regNum": "2024108292",
+    "horseName": "Brinjalの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 11
+  },
+  {
+    "rank": 144,
+    "regNum": "2024101897",
+    "horseName": "アンダーグラウンド",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 11
+  },
+  {
+    "rank": 145,
+    "regNum": "2024105284",
+    "horseName": "エルヴォヤージュ",
+    "gender": "牝",
+    "trainer": "友道康夫",
+    "nominees": 11
+  },
+  {
+    "rank": 146,
+    "regNum": "2024106899",
+    "horseName": "ブラックカルダモン",
+    "gender": "牝",
+    "trainer": "杉山晴紀",
+    "nominees": 11
+  },
+  {
+    "rank": 147,
+    "regNum": "2024108278",
+    "horseName": "Angel Numberの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 10
+  },
+  {
+    "rank": 148,
+    "regNum": "2024106005",
+    "horseName": "マヴリスキア",
+    "gender": "牝",
+    "trainer": "上原佑紀",
+    "nominees": 10
+  },
+  {
+    "rank": 149,
+    "regNum": "2024106271",
+    "horseName": "シャローチャンプ",
+    "gender": "牡",
+    "trainer": "安田翔伍",
+    "nominees": 10
+  },
+  {
+    "rank": 150,
+    "regNum": "2024106673",
+    "horseName": "レッドヴェリタス",
+    "gender": "牡",
+    "trainer": "福永祐一",
+    "nominees": 10
+  },
+  {
+    "rank": 151,
+    "regNum": "2024105286",
+    "horseName": "Catch A Glimpseの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 10
+  },
+  {
+    "rank": 152,
+    "regNum": "2024105874",
+    "horseName": "シェーンリヒト",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 10
+  },
+  {
+    "rank": 153,
+    "regNum": "2024106587",
+    "horseName": "マーズエクレール",
+    "gender": "牡",
+    "trainer": "佐藤悠太",
+    "nominees": 10
+  },
+  {
+    "rank": 154,
+    "regNum": "2024106469",
+    "horseName": "アドマイヤキングス",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 10
+  },
+  {
+    "rank": 155,
+    "regNum": "2024106525",
+    "horseName": "エデンヴァレー",
+    "gender": "牝",
+    "trainer": "武幸四郎",
+    "nominees": 10
+  },
+  {
+    "rank": 156,
+    "regNum": "2024106944",
+    "horseName": "メモリアデルレ",
+    "gender": "牡",
+    "trainer": "吉岡辰弥",
+    "nominees": 10
+  },
+  {
+    "rank": 157,
+    "regNum": "2024106303",
+    "horseName": "ダノングローバル",
+    "gender": "牡",
+    "trainer": "大竹正博",
+    "nominees": 10
+  },
+  {
+    "rank": 158,
+    "regNum": "2024106180",
+    "horseName": "ダノンキューブ",
+    "gender": "牝",
+    "trainer": "橋口慎介",
+    "nominees": 10
+  },
+  {
+    "rank": 159,
+    "regNum": "2024106508",
+    "horseName": "アトミックリーチ",
+    "gender": "牡",
+    "trainer": "宮田敬介",
+    "nominees": 10
+  },
+  {
+    "rank": 160,
+    "regNum": "2024105811",
+    "horseName": "カリーナミアの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 10
+  },
+  {
+    "rank": 161,
+    "regNum": "2024103197",
+    "horseName": "エピソードゼロ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 10
+  },
+  {
+    "rank": 162,
+    "regNum": "2024105811",
+    "horseName": "カリーナミアの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 10
+  },
+  {
+    "rank": 163,
+    "regNum": "2024106125",
+    "horseName": "クレイヴィング",
+    "gender": "牡",
+    "trainer": "斉藤崇史",
+    "nominees": 10
+  },
+  {
+    "rank": 164,
+    "regNum": "2024105853",
+    "horseName": "ルパドゥクール",
+    "gender": "牝",
+    "trainer": "上村洋行",
+    "nominees": 9
+  },
+  {
+    "rank": 165,
+    "regNum": "2024106555",
+    "horseName": "ピュティアス",
+    "gender": "牡",
+    "trainer": "池添学",
+    "nominees": 9
+  },
+  {
+    "rank": 166,
+    "regNum": "2024106410",
+    "horseName": "ホウオウシュウ",
+    "gender": "牡",
+    "trainer": "田中博康",
+    "nominees": 9
+  },
+  {
+    "rank": 167,
+    "regNum": "2024106886",
+    "horseName": "リアライズアビオン",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 9
+  },
+  {
+    "rank": 168,
+    "regNum": "2024106663",
+    "horseName": "スターリーフライト",
+    "gender": "牝",
+    "trainer": "安田翔伍",
+    "nominees": 9
+  },
+  {
+    "rank": 169,
+    "regNum": "2024106106",
+    "horseName": "ウィンターブリーズ",
+    "gender": "牡",
+    "trainer": "田中博康",
+    "nominees": 9
+  },
+  {
+    "rank": 170,
+    "regNum": "2024105890",
+    "horseName": "アヴィアトーレ",
+    "gender": "牡",
+    "trainer": "田島俊明",
+    "nominees": 9
+  },
+  {
+    "rank": 171,
+    "regNum": "2024106649",
+    "horseName": "ドラゴンバルド",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 9
+  },
+  {
+    "rank": 172,
+    "regNum": "2024106602",
+    "horseName": "レッドタイラント",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 9
+  },
+  {
+    "rank": 173,
+    "regNum": "2024100255",
+    "horseName": "アルテクィーン",
+    "gender": "牝",
+    "trainer": "杉山晴紀",
+    "nominees": 9
+  },
+  {
+    "rank": 174,
+    "regNum": "2024106226",
+    "horseName": "ハートノート",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 9
+  },
+  {
+    "rank": 175,
+    "regNum": "2024106448",
+    "horseName": "インテルラゴス",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 9
+  },
+  {
+    "rank": 176,
+    "regNum": "2024106063",
+    "horseName": "ヒシレガシー",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 9
+  },
+  {
+    "rank": 177,
+    "regNum": "2024105962",
+    "horseName": "フロムザブルー",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 9
+  },
+  {
+    "rank": 178,
+    "regNum": "2024106535",
+    "horseName": "ムービー",
+    "gender": "牝",
+    "trainer": "中内田充",
+    "nominees": 9
+  },
+  {
+    "rank": 179,
+    "regNum": "2024106178",
+    "horseName": "アインザッツ",
+    "gender": "牡",
+    "trainer": "宮田敬介",
+    "nominees": 9
+  },
+  {
+    "rank": 180,
+    "regNum": "2024107148",
+    "horseName": "アルデオリエンス",
+    "gender": "牝",
+    "trainer": "藤岡健一",
+    "nominees": 9
+  },
+  {
+    "rank": 181,
+    "regNum": "2024106555",
+    "horseName": "ピュティアス",
+    "gender": "牡",
+    "trainer": "池添学",
+    "nominees": 9
+  },
+  {
+    "rank": 182,
+    "regNum": "2024106410",
+    "horseName": "ホウオウシュウ",
+    "gender": "牡",
+    "trainer": "田中博康",
+    "nominees": 9
+  },
+  {
+    "rank": 183,
+    "regNum": "2024106231",
+    "horseName": "オーソロンビック",
+    "gender": "牡",
+    "trainer": "斎藤誠",
+    "nominees": 8
+  },
+  {
+    "rank": 184,
+    "regNum": "2024107063",
+    "horseName": "ルースソラール",
+    "gender": "牡",
+    "trainer": "吉岡辰弥",
+    "nominees": 8
+  },
+  {
+    "rank": 185,
+    "regNum": "2024106976",
+    "horseName": "ヴィヴェローネ",
+    "gender": "牝",
+    "trainer": "高野友和",
+    "nominees": 8
+  },
+  {
+    "rank": 186,
+    "regNum": "2024106928",
+    "horseName": "アーケントレイル",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 8
+  },
+  {
+    "rank": 187,
+    "regNum": "2024106395",
+    "horseName": "エルヴァーレ",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 8
+  },
+  {
+    "rank": 188,
+    "regNum": "2024106528",
+    "horseName": "ランパディアス",
+    "gender": "牡",
+    "trainer": "黒岩陽一",
+    "nominees": 8
+  },
+  {
+    "rank": 189,
+    "regNum": "2024108267",
+    "horseName": "Mangoustineの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 8
+  },
+  {
+    "rank": 190,
+    "regNum": "2024106267",
+    "horseName": "ネオカロン",
+    "gender": "牝",
+    "trainer": "高野友和",
+    "nominees": 8
+  },
+  {
+    "rank": 191,
+    "regNum": "2024101426",
+    "horseName": "シエロブリジャンテ",
+    "gender": "牝",
+    "trainer": "宮田敬介",
+    "nominees": 8
+  },
+  {
+    "rank": 192,
+    "regNum": "2024106692",
+    "horseName": "アドマイヤリッスン",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 8
+  },
+  {
+    "rank": 193,
+    "regNum": "2024106327",
+    "horseName": "サトノアミュレット",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 8
+  },
+  {
+    "rank": 194,
+    "regNum": "2024105934",
+    "horseName": "フォルトゥナロッサ",
+    "gender": "牝",
+    "trainer": "武幸四郎",
+    "nominees": 8
+  },
+  {
+    "rank": 195,
+    "regNum": "2024106053",
+    "horseName": "ミクニエクリプス",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 8
+  },
+  {
+    "rank": 196,
+    "regNum": "2024105812",
+    "horseName": "クレアティオ",
+    "gender": "牝",
+    "trainer": "矢作芳人",
+    "nominees": 8
+  },
+  {
+    "rank": 197,
+    "regNum": "2024105980",
+    "horseName": "ノーブルグランツ",
+    "gender": "牡",
+    "trainer": "久保田貴",
+    "nominees": 8
+  },
+  {
+    "rank": 198,
+    "regNum": "2024104698",
+    "horseName": "オンユアマークス",
+    "gender": "牡",
+    "trainer": "松永幹夫",
+    "nominees": 8
+  },
+  {
+    "rank": 199,
+    "regNum": "2024110010",
+    "horseName": "フライトコール",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 8
+  },
+  {
+    "rank": 200,
+    "regNum": "2024106661",
+    "horseName": "ガリアルダ",
+    "gender": "牝",
+    "trainer": "上村洋行",
+    "nominees": 8
+  },
+  {
+    "rank": 201,
+    "regNum": "2024107058",
+    "horseName": "デュアルサイン",
+    "gender": "牡",
+    "trainer": "武幸四郎",
+    "nominees": 7
+  },
+  {
+    "rank": 202,
+    "regNum": "2024106048",
+    "horseName": "レッドマスキュラー",
+    "gender": "牡",
+    "trainer": "黒岩陽一",
+    "nominees": 7
+  },
+  {
+    "rank": 203,
+    "regNum": "2024106722",
+    "horseName": "アイデア",
+    "gender": "牡",
+    "trainer": "中内田充",
+    "nominees": 7
+  },
+  {
+    "rank": 204,
+    "regNum": "2024106308",
+    "horseName": "フェニックスロール",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 7
+  },
+  {
+    "rank": 205,
+    "regNum": "2024106282",
+    "horseName": "インカルナータ",
+    "gender": "牡",
+    "trainer": "西園翔太",
+    "nominees": 7
+  },
+  {
+    "rank": 206,
+    "regNum": "2024105923",
+    "horseName": "アクロスザタイム",
+    "gender": "牝",
+    "trainer": "杉山晴紀",
+    "nominees": 7
+  },
+  {
+    "rank": 207,
+    "regNum": "2024100636",
+    "horseName": "クシュラモクリ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 7
+  },
+  {
+    "rank": 208,
+    "regNum": "2024106201",
+    "horseName": "ゼヴィウス",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 7
+  },
+  {
+    "rank": 209,
+    "regNum": "2024106430",
+    "horseName": "グラシアレスインク",
+    "gender": "牡",
+    "trainer": "安田翔伍",
+    "nominees": 7
+  },
+  {
+    "rank": 210,
+    "regNum": "2024106274",
+    "horseName": "ギルデッドグロス",
+    "gender": "牡",
+    "trainer": "黒岩陽一",
+    "nominees": 7
+  },
+  {
+    "rank": 211,
+    "regNum": "2024106428",
+    "horseName": "ビスタセレナータ",
+    "gender": "牝",
+    "trainer": "清水久詞",
+    "nominees": 7
+  },
+  {
+    "rank": 212,
+    "regNum": "2024105846",
+    "horseName": "レヴェレーター",
+    "gender": "牡",
+    "trainer": "高野友和",
+    "nominees": 7
+  },
+  {
+    "rank": 213,
+    "regNum": "2024106723",
+    "horseName": "コルベータ",
+    "gender": "牡",
+    "trainer": "松下武士",
+    "nominees": 7
+  },
+  {
+    "rank": 214,
+    "regNum": "2024103634",
+    "horseName": "マイネルアリスタ",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 7
+  },
+  {
+    "rank": 215,
+    "regNum": "2024106283",
+    "horseName": "スイートリディア",
+    "gender": "牝",
+    "trainer": "高橋亮",
+    "nominees": 7
+  },
+  {
+    "rank": 216,
+    "regNum": "2024106584",
+    "horseName": "フェスタベラ",
+    "gender": "牝",
+    "trainer": "木村哲也",
+    "nominees": 7
+  },
+  {
+    "rank": 217,
+    "regNum": "2024101707",
+    "horseName": "エリカサントロペ",
+    "gender": "牝",
+    "trainer": "友道康夫",
+    "nominees": 7
+  },
+  {
+    "rank": 218,
+    "regNum": "2024106910",
+    "horseName": "ディヴィニダッド",
+    "gender": "牡",
+    "trainer": "辻野泰之",
+    "nominees": 7
+  },
+  {
+    "rank": 219,
+    "regNum": "2024106413",
+    "horseName": "トップレイアー",
+    "gender": "牡",
+    "trainer": "大久保龍",
+    "nominees": 7
+  },
+  {
+    "rank": 220,
+    "regNum": "2024106383",
+    "horseName": "インディジャズ",
+    "gender": "牝",
+    "trainer": "高野友和",
+    "nominees": 7
+  },
+  {
+    "rank": 221,
+    "regNum": "2024106430",
+    "horseName": "グラシアレスインク",
+    "gender": "牡",
+    "trainer": "安田翔伍",
+    "nominees": 7
+  },
+  {
+    "rank": 222,
+    "regNum": "2024106428",
+    "horseName": "ビスタセレナータ",
+    "gender": "牝",
+    "trainer": "清水久詞",
+    "nominees": 7
+  },
+  {
+    "rank": 223,
+    "regNum": "2024103912",
+    "horseName": "サトノアニマ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 224,
+    "regNum": "2024106711",
+    "horseName": "アルコデラルーナ",
+    "gender": "牝",
+    "trainer": "矢嶋大樹",
+    "nominees": 6
+  },
+  {
+    "rank": 225,
+    "regNum": "2024105963",
+    "horseName": "ダノンチャンピオン",
+    "gender": "牡",
+    "trainer": "安田翔伍",
+    "nominees": 6
+  },
+  {
+    "rank": 226,
+    "regNum": "2024106116",
+    "horseName": "プランプリップ",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 227,
+    "regNum": "2024106380",
+    "horseName": "アトランタ",
+    "gender": "牡",
+    "trainer": "高柳大輔",
+    "nominees": 6
+  },
+  {
+    "rank": 228,
+    "regNum": "2024100427",
+    "horseName": "マテンロウヒルズ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 229,
+    "regNum": "2024106638",
+    "horseName": "エトワールビズー",
+    "gender": "牝",
+    "trainer": "高野友和",
+    "nominees": 6
+  },
+  {
+    "rank": 230,
+    "regNum": "2024108240",
+    "horseName": "スターフラッシュ",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 6
+  },
+  {
+    "rank": 231,
+    "regNum": "2024106246",
+    "horseName": "オーロトラジェの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 232,
+    "regNum": "2024106482",
+    "horseName": "アンムート",
+    "gender": "牝",
+    "trainer": "奥村豊",
+    "nominees": 6
+  },
+  {
+    "rank": 233,
+    "regNum": "2024106375",
+    "horseName": "シーズアウルフ",
+    "gender": "牝",
+    "trainer": "栗田徹",
+    "nominees": 6
+  },
+  {
+    "rank": 234,
+    "regNum": "2024105317",
+    "horseName": "ヴィルマリー",
+    "gender": "牝",
+    "trainer": "上村洋行",
+    "nominees": 6
+  },
+  {
+    "rank": 235,
+    "regNum": "2024104321",
+    "horseName": "ダノンカンタービレ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 236,
+    "regNum": "2024105282",
+    "horseName": "キャンディリヒト",
+    "gender": "牝",
+    "trainer": "安田翔伍",
+    "nominees": 6
+  },
+  {
+    "rank": 237,
+    "regNum": "2024106392",
+    "horseName": "スイープラディウス",
+    "gender": "牡",
+    "trainer": "萩原清",
+    "nominees": 6
+  },
+  {
+    "rank": 238,
+    "regNum": "2024106605",
+    "horseName": "オプティミスタ",
+    "gender": "牝",
+    "trainer": "手塚貴久",
+    "nominees": 6
+  },
+  {
+    "rank": 239,
+    "regNum": "2024106333",
+    "horseName": "ガヤーズアモーレ",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 240,
+    "regNum": "2024104576",
+    "horseName": "タイセイソアリング",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 241,
+    "regNum": "2024105381",
+    "horseName": "リフレイムの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 242,
+    "regNum": "2024106603",
+    "horseName": "シスキンブルーム",
+    "gender": "牝",
+    "trainer": "斉藤崇史",
+    "nominees": 6
+  },
+  {
+    "rank": 243,
+    "regNum": "2024103198",
+    "horseName": "シルクドマルス",
+    "gender": "牝",
+    "trainer": "松尾卓哉",
+    "nominees": 6
+  },
+  {
+    "rank": 244,
+    "regNum": "2024103469",
+    "horseName": "レインインザスカイ",
+    "gender": "牝",
+    "trainer": "田中克典",
+    "nominees": 6
+  },
+  {
+    "rank": 245,
+    "regNum": "2024106702",
+    "horseName": "リリサイドの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 246,
+    "regNum": "2024106721",
+    "horseName": "クラルテロワ",
+    "gender": "牡",
+    "trainer": "松永幹夫",
+    "nominees": 6
+  },
+  {
+    "rank": 247,
+    "regNum": "2024108192",
+    "horseName": "アークシーベル",
+    "gender": "牡",
+    "trainer": "蛯名正義",
+    "nominees": 6
+  },
+  {
+    "rank": 248,
+    "regNum": "2024106426",
+    "horseName": "コールセレスト",
+    "gender": "牝",
+    "trainer": "武井亮",
+    "nominees": 6
+  },
+  {
+    "rank": 249,
+    "regNum": "2024106198",
+    "horseName": "シグロデオロ",
+    "gender": "牡",
+    "trainer": "平田修",
+    "nominees": 6
+  },
+  {
+    "rank": 250,
+    "regNum": "2024106711",
+    "horseName": "アルコデラルーナ",
+    "gender": "牝",
+    "trainer": "矢嶋大樹",
+    "nominees": 6
+  },
+  {
+    "rank": 251,
+    "regNum": "2024103912",
+    "horseName": "サトノアニマ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 252,
+    "regNum": "2024106116",
+    "horseName": "プランプリップ",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 253,
+    "regNum": "2024105963",
+    "horseName": "ダノンチャンピオン",
+    "gender": "牡",
+    "trainer": "安田翔伍",
+    "nominees": 6
+  },
+  {
+    "rank": 254,
+    "regNum": "2024106380",
+    "horseName": "アトランタ",
+    "gender": "牡",
+    "trainer": "高柳大輔",
+    "nominees": 6
+  },
+  {
+    "rank": 255,
+    "regNum": "2024106638",
+    "horseName": "エトワールビズー",
+    "gender": "牝",
+    "trainer": "高野友和",
+    "nominees": 6
+  },
+  {
+    "rank": 256,
+    "regNum": "2024108240",
+    "horseName": "スターフラッシュ",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 6
+  },
+  {
+    "rank": 257,
+    "regNum": "2024106246",
+    "horseName": "オーロトラジェの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 258,
+    "regNum": "2024100427",
+    "horseName": "マテンロウヒルズ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 6
+  },
+  {
+    "rank": 259,
+    "regNum": "2024103455",
+    "horseName": "ポルトブルー",
+    "gender": "牡",
+    "trainer": "浜田多実",
+    "nominees": 5
+  },
+  {
+    "rank": 260,
+    "regNum": "2024106377",
+    "horseName": "シーアンドパールズ",
+    "gender": "牝",
+    "trainer": "田中博康",
+    "nominees": 5
+  },
+  {
+    "rank": 261,
+    "regNum": "2024106681",
+    "horseName": "リアライズシンシア",
+    "gender": "牝",
+    "trainer": "須貝尚介",
+    "nominees": 5
+  },
+  {
+    "rank": 262,
+    "regNum": "2024104670",
+    "horseName": "オリーブティアラの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 263,
+    "regNum": "2024101893",
+    "horseName": "アヴァロン",
+    "gender": "牡",
+    "trainer": "清水久詞",
+    "nominees": 5
+  },
+  {
+    "rank": 264,
+    "regNum": "2024103834",
+    "horseName": "ゼンノレガリア",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 265,
+    "regNum": "2024101891",
+    "horseName": "モズデキマリ",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 5
+  },
+  {
+    "rank": 266,
+    "regNum": "2024106628",
+    "horseName": "インティサール",
+    "gender": "牝",
+    "trainer": "杉山佳明",
+    "nominees": 5
+  },
+  {
+    "rank": 267,
+    "regNum": "2024107314",
+    "horseName": "クルミネイトの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 268,
+    "regNum": "2024106743",
+    "horseName": "エクラドリオン",
+    "gender": "牡",
+    "trainer": "中舘英二",
+    "nominees": 5
+  },
+  {
+    "rank": 269,
+    "regNum": "2024106523",
+    "horseName": "カントアンジェリコ",
+    "gender": "牝",
+    "trainer": "宮田敬介",
+    "nominees": 5
+  },
+  {
+    "rank": 270,
+    "regNum": "2024107160",
+    "horseName": "ショウナンラプソ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 271,
+    "regNum": "2024106581",
+    "horseName": "ユメノカケラ",
+    "gender": "牡",
+    "trainer": "上原佑紀",
+    "nominees": 5
+  },
+  {
+    "rank": 272,
+    "regNum": "2024106203",
+    "horseName": "タイセイ",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 5
+  },
+  {
+    "rank": 273,
+    "regNum": "2024103438",
+    "horseName": "アントレピード",
+    "gender": "牡",
+    "trainer": "池江泰寿",
+    "nominees": 5
+  },
+  {
+    "rank": 274,
+    "regNum": "2024106604",
+    "horseName": "ボーヴァン",
+    "gender": "牡",
+    "trainer": "田村康仁",
+    "nominees": 5
+  },
+  {
+    "rank": 275,
+    "regNum": "2024106697",
+    "horseName": "ファーストアライヴ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 276,
+    "regNum": "2024106160",
+    "horseName": "ヴァストマーレ",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 5
+  },
+  {
+    "rank": 277,
+    "regNum": "2024106138",
+    "horseName": "ストラテジスト",
+    "gender": "牡",
+    "trainer": "斉藤崇史",
+    "nominees": 5
+  },
+  {
+    "rank": 278,
+    "regNum": "2024106066",
+    "horseName": "ホワイトフレアー",
+    "gender": "牡",
+    "trainer": "黒岩陽一",
+    "nominees": 5
+  },
+  {
+    "rank": 279,
+    "regNum": "2024100521",
+    "horseName": "トップチェッカー",
+    "gender": "牡",
+    "trainer": "武英智",
+    "nominees": 5
+  },
+  {
+    "rank": 280,
+    "regNum": "2024104874",
+    "horseName": "デイジーバローズ",
+    "gender": "牝",
+    "trainer": "友道康夫",
+    "nominees": 5
+  },
+  {
+    "rank": 281,
+    "regNum": "2024106581",
+    "horseName": "ユメノカケラ",
+    "gender": "牡",
+    "trainer": "上原佑紀",
+    "nominees": 5
+  },
+  {
+    "rank": 282,
+    "regNum": "2024106203",
+    "horseName": "タイセイ",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 5
+  },
+  {
+    "rank": 283,
+    "regNum": "2024106138",
+    "horseName": "ストラテジスト",
+    "gender": "牡",
+    "trainer": "斉藤崇史",
+    "nominees": 5
+  },
+  {
+    "rank": 284,
+    "regNum": "2024106066",
+    "horseName": "ホワイトフレアー",
+    "gender": "牡",
+    "trainer": "黒岩陽一",
+    "nominees": 5
+  },
+  {
+    "rank": 285,
+    "regNum": "2024106697",
+    "horseName": "ファーストアライヴ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 286,
+    "regNum": "2024106160",
+    "horseName": "ヴァストマーレ",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 5
+  },
+  {
+    "rank": 287,
+    "regNum": "2024104874",
+    "horseName": "デイジーバローズ",
+    "gender": "牝",
+    "trainer": "友道康夫",
+    "nominees": 5
+  },
+  {
+    "rank": 288,
+    "regNum": "2024100521",
+    "horseName": "トップチェッカー",
+    "gender": "牡",
+    "trainer": "武英智",
+    "nominees": 5
+  },
+  {
+    "rank": 289,
+    "regNum": "2024106148",
+    "horseName": "アーキミロナリア",
+    "gender": "牝",
+    "trainer": "杉山佳明",
+    "nominees": 5
+  },
+  {
+    "rank": 290,
+    "regNum": "2024106489",
+    "horseName": "ドリームローパーの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 291,
+    "regNum": "2024105755",
+    "horseName": "リアライズセレスト",
+    "gender": "牡",
+    "trainer": "武幸四郎",
+    "nominees": 5
+  },
+  {
+    "rank": 292,
+    "regNum": "2024107038",
+    "horseName": "パルクデラモールの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 293,
+    "regNum": "2024107165",
+    "horseName": "ジーティーマイカ",
+    "gender": "牝",
+    "trainer": "前川恭子",
+    "nominees": 5
+  },
+  {
+    "rank": 294,
+    "regNum": "2024106179",
+    "horseName": "インピードの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 295,
+    "regNum": "2024101772",
+    "horseName": "アイアムスグレモノ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 5
+  },
+  {
+    "rank": 296,
+    "regNum": "2024105925",
+    "horseName": "ソウルスターリングの2024",
+    "gender": "牝",
+    "trainer": "蛯名正義",
+    "nominees": 5
+  },
+  {
+    "rank": 297,
+    "regNum": "2024106256",
+    "horseName": "ケアホルム",
+    "gender": "牡",
+    "trainer": "斎藤誠",
+    "nominees": 5
+  },
+  {
+    "rank": 298,
+    "regNum": "2024106615",
+    "horseName": "ソルフィーナ",
+    "gender": "牝",
+    "trainer": "上原佑紀",
+    "nominees": 5
+  },
+  {
+    "rank": 299,
+    "regNum": "2024105973",
+    "horseName": "ノルトハウゼン",
+    "gender": "牡",
+    "trainer": "菊沢隆徳",
+    "nominees": 4
+  },
+  {
+    "rank": 300,
+    "regNum": "2024106358",
+    "horseName": "フロントページ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 301,
+    "regNum": "2024106394",
+    "horseName": "スカイズザリミット",
+    "gender": "牝",
+    "trainer": "木村哲也",
+    "nominees": 4
+  },
+  {
+    "rank": 302,
+    "regNum": "2024105935",
+    "horseName": "バルディリオ",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 4
+  },
+  {
+    "rank": 303,
+    "regNum": "2024106460",
+    "horseName": "ティグリディア",
+    "gender": "牝",
+    "trainer": "池添学",
+    "nominees": 4
+  },
+  {
+    "rank": 304,
+    "regNum": "2024104720",
+    "horseName": "ホエールキャプチャの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 305,
+    "regNum": "2024103488",
+    "horseName": "アフェクト",
+    "gender": "牡",
+    "trainer": "上原佑紀",
+    "nominees": 4
+  },
+  {
+    "rank": 306,
+    "regNum": "2024101975",
+    "horseName": "ソアリングドリーム",
+    "gender": "牝",
+    "trainer": "中内田充",
+    "nominees": 4
+  },
+  {
+    "rank": 307,
+    "regNum": "2024100467",
+    "horseName": "エンジョイ",
+    "gender": "牝",
+    "trainer": "上村洋行",
+    "nominees": 4
+  },
+  {
+    "rank": 308,
+    "regNum": "2024100134",
+    "horseName": "ルクスマグナ",
+    "gender": "牡",
+    "trainer": "高柳瑞樹",
+    "nominees": 4
+  },
+  {
+    "rank": 309,
+    "regNum": "2024106473",
+    "horseName": "レッドシーカー",
+    "gender": "牡",
+    "trainer": "池江泰寿",
+    "nominees": 4
+  },
+  {
+    "rank": 310,
+    "regNum": "2024106752",
+    "horseName": "サンティエリュール",
+    "gender": "牝",
+    "trainer": "松永幹夫",
+    "nominees": 4
+  },
+  {
+    "rank": 311,
+    "regNum": "2024100120",
+    "horseName": "ステラトップガン",
+    "gender": "牡",
+    "trainer": "高柳大輔",
+    "nominees": 4
+  },
+  {
+    "rank": 312,
+    "regNum": "2024104337",
+    "horseName": "エリカプロヴァンス",
+    "gender": "牝",
+    "trainer": "杉山晴紀",
+    "nominees": 4
+  },
+  {
+    "rank": 313,
+    "regNum": "2024104578",
+    "horseName": "オールベット",
+    "gender": "牡",
+    "trainer": "上村洋行",
+    "nominees": 4
+  },
+  {
+    "rank": 314,
+    "regNum": "2024103714",
+    "horseName": "アークレオン",
+    "gender": "牡",
+    "trainer": "高柳大輔",
+    "nominees": 4
+  },
+  {
+    "rank": 315,
+    "regNum": "2024106358",
+    "horseName": "フロントページ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 316,
+    "regNum": "2024106551",
+    "horseName": "テリオスブギ",
+    "gender": "牝",
+    "trainer": "田島俊明",
+    "nominees": 4
+  },
+  {
+    "rank": 317,
+    "regNum": "2024105973",
+    "horseName": "ノルトハウゼン",
+    "gender": "牡",
+    "trainer": "菊沢隆徳",
+    "nominees": 4
+  },
+  {
+    "rank": 318,
+    "regNum": "2024106190",
+    "horseName": "ジーティーマカロン",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 319,
+    "regNum": "2024106350",
+    "horseName": "ディーヴァレギオン",
+    "gender": "牡",
+    "trainer": "斎藤誠",
+    "nominees": 4
+  },
+  {
+    "rank": 320,
+    "regNum": "2024106369",
+    "horseName": "シーウィルレインの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 321,
+    "regNum": "2024108209",
+    "horseName": "ドラヴァッシュ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 322,
+    "regNum": "2024106170",
+    "horseName": "ヒシホライゾン",
+    "gender": "牡",
+    "trainer": "堀宣行",
+    "nominees": 4
+  },
+  {
+    "rank": 323,
+    "regNum": "2024106173",
+    "horseName": "ルミナレーヌ",
+    "gender": "牝",
+    "trainer": "昆貢",
+    "nominees": 4
+  },
+  {
+    "rank": 324,
+    "regNum": "2024107018",
+    "horseName": "ゴルトクリーガー",
+    "gender": "牡",
+    "trainer": "西園翔太",
+    "nominees": 4
+  },
+  {
+    "rank": 325,
+    "regNum": "2024100720",
+    "horseName": "アールラプチャーの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 326,
+    "regNum": "2024103885",
+    "horseName": "マテンロウバモス",
+    "gender": "牡",
+    "trainer": "昆貢",
+    "nominees": 4
+  },
+  {
+    "rank": 327,
+    "regNum": "2024106585",
+    "horseName": "ホウオウビリーヴ",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 4
+  },
+  {
+    "rank": 328,
+    "regNum": "2024106262",
+    "horseName": "ビスケットサンド",
+    "gender": "牝",
+    "trainer": "佐藤悠太",
+    "nominees": 4
+  },
+  {
+    "rank": 329,
+    "regNum": "2024100702",
+    "horseName": "アトゥア",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 330,
+    "regNum": "2024106597",
+    "horseName": "ホウオウプレマ",
+    "gender": "牝",
+    "trainer": "大竹正博",
+    "nominees": 4
+  },
+  {
+    "rank": 331,
+    "regNum": "2024108188",
+    "horseName": "オーレヴィア",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 4
+  },
+  {
+    "rank": 332,
+    "regNum": "2024105695",
+    "horseName": "アークブレイブ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 333,
+    "regNum": "2024106135",
+    "horseName": "セレニティマリン",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 334,
+    "regNum": "2024103547",
+    "horseName": "ウインガラハッド",
+    "gender": "牡",
+    "trainer": "宮徹",
+    "nominees": 4
+  },
+  {
+    "rank": 335,
+    "regNum": "2024106076",
+    "horseName": "アーデルボーデン",
+    "gender": "牡",
+    "trainer": "中竹和也",
+    "nominees": 4
+  },
+  {
+    "rank": 336,
+    "regNum": "2024106537",
+    "horseName": "フィネスブレード",
+    "gender": "牡",
+    "trainer": "藤原英昭",
+    "nominees": 4
+  },
+  {
+    "rank": 337,
+    "regNum": "2024107345",
+    "horseName": "ウインヴァンガード",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 4
+  },
+  {
+    "rank": 338,
+    "regNum": "2024106562",
+    "horseName": "グルドロッティン",
+    "gender": "牡",
+    "trainer": "矢嶋大樹",
+    "nominees": 4
+  },
+  {
+    "rank": 339,
+    "regNum": "2024108310",
+    "horseName": "Exotic Westの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 340,
+    "regNum": "2024106092",
+    "horseName": "トゥールドミラベル",
+    "gender": "牡",
+    "trainer": "小島茂之",
+    "nominees": 4
+  },
+  {
+    "rank": 341,
+    "regNum": "2024106705",
+    "horseName": "リリーノーブルの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 342,
+    "regNum": "2024108209",
+    "horseName": "ドラヴァッシュ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 343,
+    "regNum": "2024103885",
+    "horseName": "マテンロウバモス",
+    "gender": "牡",
+    "trainer": "昆貢",
+    "nominees": 4
+  },
+  {
+    "rank": 344,
+    "regNum": "2024106170",
+    "horseName": "ヒシホライゾン",
+    "gender": "牡",
+    "trainer": "堀宣行",
+    "nominees": 4
+  },
+  {
+    "rank": 345,
+    "regNum": "2024106173",
+    "horseName": "ルミナレーヌ",
+    "gender": "牝",
+    "trainer": "昆貢",
+    "nominees": 4
+  },
+  {
+    "rank": 346,
+    "regNum": "2024107018",
+    "horseName": "ゴルトクリーガー",
+    "gender": "牡",
+    "trainer": "西園翔太",
+    "nominees": 4
+  },
+  {
+    "rank": 347,
+    "regNum": "2024100720",
+    "horseName": "アールラプチャーの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 348,
+    "regNum": "2024106585",
+    "horseName": "ホウオウビリーヴ",
+    "gender": "牡",
+    "trainer": "木村哲也",
+    "nominees": 4
+  },
+  {
+    "rank": 349,
+    "regNum": "2024106262",
+    "horseName": "ビスケットサンド",
+    "gender": "牝",
+    "trainer": "佐藤悠太",
+    "nominees": 4
+  },
+  {
+    "rank": 350,
+    "regNum": "2024100702",
+    "horseName": "アトゥア",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 351,
+    "regNum": "2024106537",
+    "horseName": "フィネスブレード",
+    "gender": "牡",
+    "trainer": "藤原英昭",
+    "nominees": 4
+  },
+  {
+    "rank": 352,
+    "regNum": "2024106597",
+    "horseName": "ホウオウプレマ",
+    "gender": "牝",
+    "trainer": "大竹正博",
+    "nominees": 4
+  },
+  {
+    "rank": 353,
+    "regNum": "2024108188",
+    "horseName": "オーレヴィア",
+    "gender": "牡",
+    "trainer": "矢作芳人",
+    "nominees": 4
+  },
+  {
+    "rank": 354,
+    "regNum": "2024105695",
+    "horseName": "アークブレイブ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 355,
+    "regNum": "2024106135",
+    "horseName": "セレニティマリン",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 356,
+    "regNum": "2024103547",
+    "horseName": "ウインガラハッド",
+    "gender": "牡",
+    "trainer": "宮徹",
+    "nominees": 4
+  },
+  {
+    "rank": 357,
+    "regNum": "2024106076",
+    "horseName": "アーデルボーデン",
+    "gender": "牡",
+    "trainer": "中竹和也",
+    "nominees": 4
+  },
+  {
+    "rank": 358,
+    "regNum": "2024106991",
+    "horseName": "アイオリスパルス",
+    "gender": "牝",
+    "trainer": "長谷川浩",
+    "nominees": 4
+  },
+  {
+    "rank": 359,
+    "regNum": "2024107345",
+    "horseName": "ウインヴァンガード",
+    "gender": "牡",
+    "trainer": "杉山晴紀",
+    "nominees": 4
+  },
+  {
+    "rank": 360,
+    "regNum": "2024106562",
+    "horseName": "グルドロッティン",
+    "gender": "牡",
+    "trainer": "矢嶋大樹",
+    "nominees": 4
+  },
+  {
+    "rank": 361,
+    "regNum": "2024100120",
+    "horseName": "ステラトップガン",
+    "gender": "牡",
+    "trainer": "高柳大輔",
+    "nominees": 4
+  },
+  {
+    "rank": 362,
+    "regNum": "2024104337",
+    "horseName": "エリカプロヴァンス",
+    "gender": "牝",
+    "trainer": "杉山晴紀",
+    "nominees": 4
+  },
+  {
+    "rank": 363,
+    "regNum": "2024104578",
+    "horseName": "オールベット",
+    "gender": "牡",
+    "trainer": "上村洋行",
+    "nominees": 4
+  },
+  {
+    "rank": 364,
+    "regNum": "2024103714",
+    "horseName": "アークレオン",
+    "gender": "牡",
+    "trainer": "高柳大輔",
+    "nominees": 4
+  },
+  {
+    "rank": 365,
+    "regNum": "2024105973",
+    "horseName": "ノルトハウゼン",
+    "gender": "牡",
+    "trainer": "菊沢隆徳",
+    "nominees": 4
+  },
+  {
+    "rank": 366,
+    "regNum": "2024106358",
+    "horseName": "フロントページ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 367,
+    "regNum": "2024106551",
+    "horseName": "テリオスブギ",
+    "gender": "牝",
+    "trainer": "田島俊明",
+    "nominees": 4
+  },
+  {
+    "rank": 368,
+    "regNum": "2024106190",
+    "horseName": "ジーティーマカロン",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 369,
+    "regNum": "2024106350",
+    "horseName": "ディーヴァレギオン",
+    "gender": "牡",
+    "trainer": "斎藤誠",
+    "nominees": 4
+  },
+  {
+    "rank": 370,
+    "regNum": "2024106369",
+    "horseName": "シーウィルレインの2024",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 4
+  },
+  {
+    "rank": 371,
+    "regNum": "2024106689",
+    "horseName": "イシュナック",
+    "gender": "牡",
+    "trainer": "田中博康",
+    "nominees": 3
+  },
+  {
+    "rank": 372,
+    "regNum": "2024108285",
+    "horseName": "ヨコハマブルース",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 373,
+    "regNum": "2024105763",
+    "horseName": "コンフィアル",
+    "gender": "牡",
+    "trainer": "嘉藤貴行",
+    "nominees": 3
+  },
+  {
+    "rank": 374,
+    "regNum": "2024107088",
+    "horseName": "カマクラコマチ",
+    "gender": "牝",
+    "trainer": "森一誠",
+    "nominees": 3
+  },
+  {
+    "rank": 375,
+    "regNum": "2024100700",
+    "horseName": "クッキーボックス",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 376,
+    "regNum": "2024100551",
+    "horseName": "サトノステラ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 377,
+    "regNum": "2024106466",
+    "horseName": "ミシナフ",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 378,
+    "regNum": "2024103533",
+    "horseName": "ピュアレスト",
+    "gender": "牝",
+    "trainer": "武井亮",
+    "nominees": 3
+  },
+  {
+    "rank": 379,
+    "regNum": "2024106589",
+    "horseName": "パウンドザロック",
+    "gender": "牝",
+    "trainer": "宮田敬介",
+    "nominees": 3
+  },
+  {
+    "rank": 380,
+    "regNum": "2024105306",
+    "horseName": "ロードフェイスオフ",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 3
+  },
+  {
+    "rank": 381,
+    "regNum": "2024103533",
+    "horseName": "ピュアレスト",
+    "gender": "牝",
+    "trainer": "武井亮",
+    "nominees": 3
+  },
+  {
+    "rank": 382,
+    "regNum": "2024106407",
+    "horseName": "ダブルスプリング",
+    "gender": "牡",
+    "trainer": "柄崎将寿",
+    "nominees": 3
+  },
+  {
+    "rank": 383,
+    "regNum": "2024106341",
+    "horseName": "サンタンヌ",
+    "gender": "牝",
+    "trainer": "稲垣幸雄",
+    "nominees": 3
+  },
+  {
+    "rank": 384,
+    "regNum": "2024106443",
+    "horseName": "ダノンコレクト",
+    "gender": "牡",
+    "trainer": "森一誠",
+    "nominees": 3
+  },
+  {
+    "rank": 385,
+    "regNum": "2024105288",
+    "horseName": "ロードディグニティ",
+    "gender": "牡",
+    "trainer": "藤原英昭",
+    "nominees": 3
+  },
+  {
+    "rank": 386,
+    "regNum": "2024105306",
+    "horseName": "ロードフェイスオフ",
+    "gender": "牡",
+    "trainer": "友道康夫",
+    "nominees": 3
+  },
+  {
+    "rank": 387,
+    "regNum": "2024106185",
+    "horseName": "ウイングステルスの2024",
+    "gender": "牡",
+    "trainer": "井上智史",
+    "nominees": 3
+  },
+  {
+    "rank": 388,
+    "regNum": "2024106530",
+    "horseName": "オールドリーキー",
+    "gender": "牡",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 389,
+    "regNum": "2024101399",
+    "horseName": "ウィキウィキの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 390,
+    "regNum": "2024103568",
+    "horseName": "コスモイェーガー",
+    "gender": "牡",
+    "trainer": "武市康男",
+    "nominees": 3
+  },
+  {
+    "rank": 391,
+    "regNum": "2024106154",
+    "horseName": "フラガンシア",
+    "gender": "牝",
+    "trainer": "田中克典",
+    "nominees": 3
+  },
+  {
+    "rank": 392,
+    "regNum": "2024100485",
+    "horseName": "カハラアベニュー",
+    "gender": "牡",
+    "trainer": "西園翔太",
+    "nominees": 3
+  },
+  {
+    "rank": 393,
+    "regNum": "2024107052",
+    "horseName": "ブロッサムスピア",
+    "gender": "牡",
+    "trainer": "藤岡健一",
+    "nominees": 3
+  },
+  {
+    "rank": 394,
+    "regNum": "2024106166",
+    "horseName": "クレヨン",
+    "gender": "牝",
+    "trainer": "堀宣行",
+    "nominees": 3
+  },
+  {
+    "rank": 395,
+    "regNum": "2024100424",
+    "horseName": "スカイクイーン",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 396,
+    "regNum": "2024106176",
+    "horseName": "エルディタージョ",
+    "gender": "牡",
+    "trainer": "手塚貴久",
+    "nominees": 3
+  },
+  {
+    "rank": 397,
+    "regNum": "2024106500",
+    "horseName": "ザロイヤルダンサー",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 398,
+    "regNum": "2024105929",
+    "horseName": "ヘイヴァイタヒチ",
+    "gender": "牝",
+    "trainer": "加藤征弘",
+    "nominees": 3
+  },
+  {
+    "rank": 399,
+    "regNum": "2024104151",
+    "horseName": "パリージョの2024",
+    "gender": "牝",
+    "trainer": "-",
+    "nominees": 3
+  },
+  {
+    "rank": 400,
+    "regNum": "2024106665",
+    "horseName": "ウィンザーグレース",
+    "gender": "牝",
+    "trainer": "池添学",
+    "nominees": 3
+  }
+]

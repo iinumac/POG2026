@@ -5,6 +5,7 @@ import { useHorseSearch } from '../hooks/useHorseSearch';
 import { useFavorites } from '../hooks/useFavorites';
 import { useDraftState } from '../hooks/useDraftState';
 import { useAuth } from '../contexts/AuthContext';
+import { useNikkanRanking } from '../hooks/useNikkanRanking';
 import { Star, Search, X, Plus, Edit, Trash, Check, Info, ExternalLink } from '../components/Icons';
 import './FavoritesPage.css';
 
@@ -89,7 +90,8 @@ export default function FavoritesPage() {
   const { results, loading: searchLoading, search, cacheReady, cacheCount, cacheLoading } = useHorseSearch();
   const { favorites, loading: favLoading, toggleFavorite, isFavorite, updateEvaluation, removeFavorite, addFavorite } = useFavorites();
   const { fixedResults, currentRoundStatuses, draftUsers, draftSettings } = useDraftState();
-  const { user } = useAuth();
+  const { user, isAdmin } = useAuth();
+  const { getRanking } = useNikkanRanking();
 
   // 馬ごとのドラフト指名状況マップ
   const draftStatusMap = useMemo(() => {
@@ -150,7 +152,11 @@ export default function FavoritesPage() {
   const filteredFavs = useMemo(() => {
     let items = [...favorites];
     if (genderFilter !== 'all') items = items.filter((f) => genderChar(f) === genderFilter);
-    if (regionFilter !== 'all') items = items.filter((f) => f.region === regionFilter);
+    if (regionFilter !== 'all') items = items.filter((f) => {
+      const r = f.region || '';
+      if (!r) return false;
+      return r.includes(regionFilter) || regionFilter.includes(r);
+    });
 
     const collator = new Intl.Collator('ja');
     const gradeOrder = { A: 0, B: 1, C: 2 };
@@ -164,12 +170,18 @@ export default function FavoritesPage() {
           r = (gradeOrder[a[key]] ?? 99) - (gradeOrder[b[key]] ?? 99); break;
         }
         case 'name': r = collator.compare(horseName(a), horseName(b)); break;
+        case 'nikkan': {
+          const ra = getRanking(a.umaId || a.id);
+          const rb = getRanking(b.umaId || b.id);
+          r = (ra?.rank ?? 9999) - (rb?.rank ?? 9999);
+          break;
+        }
         default: break;
       }
       return r !== 0 ? r : (a.priority || 999) - (b.priority || 999);
     });
     return items;
-  }, [favorites, genderFilter, regionFilter, sortBy]);
+  }, [favorites, genderFilter, regionFilter, sortBy, getRanking]);
 
   const searchResults = useMemo(() => {
     if (!query.trim()) return [];
@@ -210,7 +222,7 @@ export default function FavoritesPage() {
             </div>
           </div>
 
-          {/* ツールバー */}
+          {/* 検索バー（馬マスタから新規追加用） */}
           <div className="v2-fav-toolbar">
             <div className="v2-fav-search">
               <Search size={14} />
@@ -218,6 +230,11 @@ export default function FavoritesPage() {
                 value={query} onChange={(e) => handleSearch(e.target.value)} disabled={cacheLoading} />
               {query && <button className="v2-btn-icon" onClick={() => setQuery('')}><X size={13} /></button>}
             </div>
+          </div>
+
+          {/* お気に入り絞り込み・並び替え */}
+          <div className="v2-fav-toolbar v2-fav-toolbar-filter">
+            <span className="v2-fav-toolbar-label">お気に入り絞り込み</span>
             <div className="v2-fav-filters">
               <button className={`v2-fav-filter ${genderFilter === 'all' ? 'active' : ''}`} onClick={() => setGenderFilter('all')}>全て</button>
               <button className={`v2-fav-filter ${genderFilter === 'm' ? 'active' : ''}`} onClick={() => setGenderFilter('m')}>♂</button>
@@ -234,6 +251,7 @@ export default function FavoritesPage() {
               <button className={`v2-fav-filter ${sortBy === 'build' ? 'active' : ''}`} onClick={() => setSortBy('build')}>体格</button>
               <button className={`v2-fav-filter ${sortBy === 'growth' ? 'active' : ''}`} onClick={() => setSortBy('growth')}>成長</button>
               <button className={`v2-fav-filter ${sortBy === 'name' ? 'active' : ''}`} onClick={() => setSortBy('name')}>馬名</button>
+              {isAdmin && <button className={`v2-fav-filter v2-fav-filter-nikkan ${sortBy === 'nikkan' ? 'active' : ''}`} onClick={() => setSortBy('nikkan')}>日刊</button>}
             </div>
           </div>
 
@@ -272,6 +290,7 @@ export default function FavoritesPage() {
                             <ExternalLink size={10} />
                           </a>
                         )}
+                        <NikkanBadge ranking={getRanking(h.登録番号 || h.id)} />
                       </div>
                       <div className="v2-fav-result-ped">
                         <span className="v2-fav-result-ped-item"><i>父</i><b><HighlightText text={fatherName(h)} query={query} /></b></span>
@@ -316,7 +335,8 @@ export default function FavoritesPage() {
                   editing={editingId === fav.id} lockedByOther={editingId != null && editingId !== fav.id}
                   onStartEdit={() => setEditingId(fav.id)} onCancelEdit={() => setEditingId(null)}
                   onSave={updateEvaluation} onRemove={() => removeFavorite(fav.id)}
-                  draftInfo={draftStatusMap[fav.umaId || fav.id]} />
+                  draftInfo={draftStatusMap[fav.umaId || fav.id]}
+                  nikkanRanking={getRanking(fav.umaId || fav.id)} />
               ))
             )}
           </div>
@@ -443,20 +463,20 @@ function AddHorseForm({ horse, onAdd, onCancel, nextRank }) {
 }
 
 // ════════════════════════════════════════════════
-function FavRow({ fav, index, editing, lockedByOther, onStartEdit, onCancelEdit, onSave, onRemove, draftInfo }) {
+function FavRow({ fav, index, editing, lockedByOther, onStartEdit, onCancelEdit, onSave, onRemove, draftInfo, nikkanRanking }) {
   return (
     <div className={`v2-fav-row ${editing ? 'is-editing' : ''} ${lockedByOther ? 'is-locked' : ''}`}>
       {editing ? (
         <FavRowEdit fav={fav} index={index} onSave={onSave} onCancel={onCancelEdit} onRemove={onRemove} />
       ) : (
-        <FavRowView fav={fav} index={index} lockedByOther={lockedByOther} onStartEdit={onStartEdit} onRemove={onRemove} draftInfo={draftInfo} />
+        <FavRowView fav={fav} index={index} lockedByOther={lockedByOther} onStartEdit={onStartEdit} onRemove={onRemove} draftInfo={draftInfo} nikkanRanking={nikkanRanking} />
       )}
     </div>
   );
 }
 
 // ════════════════════════════════════════════════
-function FavRowView({ fav, index, lockedByOther, onStartEdit, onRemove, draftInfo }) {
+function FavRowView({ fav, index, lockedByOther, onStartEdit, onRemove, draftInfo, nikkanRanking }) {
   const g = genderChar(fav);
   const rank = fav.priority ?? (index + 1);
   const rankClass = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
@@ -476,6 +496,7 @@ function FavRowView({ fav, index, lockedByOther, onStartEdit, onRemove, draftInf
               <ExternalLink size={10} />
             </a>
           )}
+          <NikkanBadge ranking={nikkanRanking} />
           {draftInfo && <DraftInfoBadge info={draftInfo} />}
         </div>
         <div className="v2-fav-linec2">
@@ -594,5 +615,25 @@ function FavRowEdit({ fav, index, onSave, onCancel }) {
         </div>
       </div>
     </div>
+  );
+}
+
+// ════════════════════════════════════════════════
+// 日刊競馬POG 指名順位バッジ（admin のみ表示）
+// ════════════════════════════════════════════════
+function nikkanTier(rank) {
+  if (rank <= 10) return 'top10';
+  if (rank <= 30) return 'top30';
+  if (rank <= 100) return 'top100';
+  return 'other';
+}
+
+function NikkanBadge({ ranking }) {
+  if (!ranking) return null;
+  return (
+    <span className={`v2-nikkan-badge v2-nikkan-${nikkanTier(ranking.rank)}`} title={`日刊競馬POG ${ranking.rank}位（${ranking.nominees}人指名）`}>
+      <span className="v2-nikkan-rank">日刊{ranking.rank}位</span>
+      <span className="v2-nikkan-nom">{ranking.nominees}人</span>
+    </span>
   );
 }

@@ -8,7 +8,7 @@ import { useSeason } from '../contexts/SeasonContext';
 import { useDraftState } from '../hooks/useDraftState';
 import { collection, doc, setDoc, getDoc, getDocs, Bytes } from 'firebase/firestore';
 import { db } from '../firebase';
-import { startRound, addDraftUser, removeDraftUser, resetDraft, setPhase, importHistoricalSeason } from '../services/draftService';
+import { startRound, addDraftUser, removeDraftUser, resetDraft, setPhase, importHistoricalSeason, syncFavoritesWithMaster, uploadNikkanRanking } from '../services/draftService';
 import './AdminPage.css';
 
 export default function AdminPage() {
@@ -21,11 +21,18 @@ export default function AdminPage() {
   const [uploadResult, setUploadResult] = useState(null);
   const [previewData, setPreviewData] = useState([]);
   const [totalRows, setTotalRows] = useState(0);
+  const [changeLog, setChangeLog] = useState(null);
   const fileRef = useRef(null);
 
   // 全登録ユーザー
   const [allUsers, setAllUsers] = useState([]);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+
+  // 日刊ランキング
+  const [nikkanFetching, setNikkanFetching] = useState(false);
+  const [nikkanProgress, setNikkanProgress] = useState('');
+  const [nikkanResult, setNikkanResult] = useState(null);
+  const [nikkanPreview, setNikkanPreview] = useState(null);
 
   // 過去シーズンインポート
   const [histSeasonId, setHistSeasonId] = useState('2022');
@@ -86,11 +93,65 @@ export default function AdminPage() {
     }
   };
 
+  // 比較対象フィールド
+  const COMPARE_FIELDS = ['馬名', '性別', '父', '母', '母父', '調教師', '東西', '生産者', '馬主'];
+
+  // 既存スナップショットを解凍して返す
+  const decompressSnapshot = async (seasonId) => {
+    try {
+      const snapshotRef = doc(db, `seasons/${seasonId}/snapshots`, 'horses');
+      const snap = await getDoc(snapshotRef);
+      if (!snap.exists()) return null;
+      const compressed = snap.data().data.toUint8Array();
+      const stream = new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));
+      const json = await new Response(stream).text();
+      return JSON.parse(json);
+    } catch {
+      return null;
+    }
+  };
+
+  // 旧データと新データの差分を検出
+  const buildDiffLog = (oldHorses, newHorses) => {
+    const oldMap = {};
+    if (oldHorses) oldHorses.forEach((h) => { if (h.登録番号) oldMap[h.登録番号] = h; });
+
+    const added = [];
+    const updated = [];
+    let unchanged = 0;
+
+    newHorses.forEach((h) => {
+      const id = h.登録番号;
+      if (!id) return;
+      const old = oldMap[id];
+      if (!old) {
+        added.push({ regNum: id, horseName: h.馬名 });
+        return;
+      }
+      const changes = [];
+      COMPARE_FIELDS.forEach((key) => {
+        const oldVal = old[key] || '';
+        const newVal = h[key] || '';
+        if (oldVal !== newVal) changes.push({ field: key, from: oldVal, to: newVal });
+      });
+      if (changes.length > 0) {
+        updated.push({ regNum: id, horseName: h.馬名, changes });
+      } else {
+        unchanged++;
+      }
+      delete oldMap[id];
+    });
+
+    const removed = Object.values(oldMap).map((h) => ({ regNum: h.登録番号, horseName: h.馬名 }));
+    return { added, updated, removed, unchanged };
+  };
+
   // Firestoreにアップロード
   const handleUpload = async () => {
     if (!file) return;
     setUploading(true);
     setUploadResult(null);
+    setChangeLog(null);
 
     try {
       const buffer = await file.arrayBuffer();
@@ -125,6 +186,10 @@ export default function AdminPage() {
           リンク: row['url'] || netkeibaUrl,
         });
       });
+
+      // 差分検出：旧スナップショットと比較
+      const oldHorses = await decompressSnapshot(currentSeasonId);
+      const diff = buildDiffLog(oldHorses, horses);
 
       // JSON化 → gzip 圧縮 → Firestore Bytes として1ドキュメントに保存
       const json = JSON.stringify(horses);
@@ -182,9 +247,17 @@ export default function AdminPage() {
         availableSeasons: currentSeasons,
       }, { merge: true });
 
+      // お気に入りデータを最新の馬マスタと同期
+      const syncResult = await syncFavoritesWithMaster(currentSeasonId, horses);
+
+      // 変更ログを保存
+      setChangeLog({ ...diff, favsSynced: syncResult.details });
+
       setUploadResult({
         type: 'success',
-        message: `${uploaded}件の馬データをアップロードしました（圧縮: ${(compressedBytes.byteLength / 1024).toFixed(1)} KB / Season: ${currentSeasonId}）`,
+        message: `${uploaded}件アップロード（圧縮: ${(compressedBytes.byteLength / 1024).toFixed(1)} KB）`
+          + ` — 新規${diff.added.length} / 更新${diff.updated.length} / 削除${diff.removed.length} / 変更なし${diff.unchanged}`
+          + (syncResult.count > 0 ? ` / お気に入り同期${syncResult.count}件` : ''),
       });
     } catch (error) {
       console.error('アップロードエラー:', error);
@@ -233,6 +306,112 @@ export default function AdminPage() {
   const handleReset = async () => {
     await resetDraft(currentSeasonId);
     setShowResetConfirm(false);
+  };
+
+  // 日刊ランキング — CORSプロキシ経由で1ページ取得
+  const NIKKAN_MAX_PAGES = 20;
+  const NIKKAN_BASE = 'https://www.nikkankeiba.com/pog2026/index.php';
+
+  // 複数プロキシをフォールバック付きで試行
+  const PROXIES = [
+    (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    (url) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+  ];
+  const proxyIndexRef = useRef(0); // 一度成功したプロキシを記憶
+
+  const fetchNikkanPage = async (page) => {
+    const target = `${NIKKAN_BASE}?func=ranking_horse&kwd_horse=&page=${page}`;
+
+    // 前回成功したプロキシから試す
+    const startIdx = proxyIndexRef.current;
+    for (let attempt = 0; attempt < PROXIES.length; attempt++) {
+      const idx = (startIdx + attempt) % PROXIES.length;
+      const proxyUrl = PROXIES[idx](target);
+      try {
+        const res = await fetch(proxyUrl);
+        if (!res.ok) continue;
+        const buf = await res.arrayBuffer();
+        const html = new TextDecoder('euc-jp').decode(buf);
+        if (html.includes('ranking_horse') || html.includes('netkeiba')) {
+          proxyIndexRef.current = idx; // 成功したプロキシを記憶
+          return html;
+        }
+      } catch { /* 次のプロキシへ */ }
+    }
+    throw new Error('全てのプロキシが利用できませんでした。CLI（node tools/fetch-nikkan-ranking.cjs）をお試しください。');
+  };
+
+  const parseNikkanHtml = (html) => {
+    const rows = [];
+    const trPattern = /<tr[^>]*>([\s\S]*?)(?=<tr|$)/gi;
+    let trMatch;
+    while ((trMatch = trPattern.exec(html)) !== null) {
+      const row = trMatch[1];
+      const linkMatch = row.match(/db\.netkeiba\.com\/horse\/(\d+)/);
+      if (!linkMatch) continue;
+      const regNum = linkMatch[1];
+
+      const cells = {};
+      const tdPattern = /<td\s+class="(\w+)"[^>]*>([\s\S]*?)<\/td>/gi;
+      let tdMatch;
+      while ((tdMatch = tdPattern.exec(row)) !== null) {
+        const cn = tdMatch[1];
+        const txt = tdMatch[2].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, '').trim();
+        if (!cells[cn]) cells[cn] = txt;
+      }
+
+      const nameMatch = row.match(/<td\s+class="bamei"[^>]*>[\s\S]*?<a[^>]*>([^<]+)<\/a>/i);
+      const horseName = nameMatch ? nameMatch[1].trim() : cells.bamei || '';
+      const genderMatch = row.match(/<td\s+class="rank"[^>]*>[^<]*<\/td>[\s\S]*?<td\s+class="rank"[^>]*>([^<]*)<\/td>/i);
+
+      const rank = parseInt(cells.rank) || 0;
+      const nominees = parseInt(cells.shimei) || 0;
+      if (rank > 0 && regNum) {
+        rows.push({
+          rank, regNum, horseName,
+          gender: genderMatch ? genderMatch[1].trim() : '',
+          trainer: cells.kyusha || '',
+          nominees,
+        });
+      }
+    }
+    return rows;
+  };
+
+  // ボタン押下 → 取得 → パース → Firestore 投入
+  const handleNikkanFetch = async () => {
+    setNikkanFetching(true);
+    setNikkanResult(null);
+    setNikkanPreview(null);
+
+    try {
+      const allResults = [];
+      for (let page = 1; page <= NIKKAN_MAX_PAGES; page++) {
+        setNikkanProgress(`ページ ${page}/${NIKKAN_MAX_PAGES} を取得中...`);
+        const html = await fetchNikkanPage(page);
+        const rows = parseNikkanHtml(html);
+        if (rows.length === 0) break;
+        allResults.push(...rows);
+      }
+
+      if (allResults.length === 0) throw new Error('データが取得できませんでした');
+
+      setNikkanProgress('Firestore に保存中...');
+      const result = await uploadNikkanRanking(currentSeasonId, allResults);
+
+      setNikkanPreview({ count: allResults.length, top5: allResults.slice(0, 5) });
+      setNikkanResult({
+        type: 'success',
+        message: `${result.count}頭のランキングデータを取得・更新しました（${allResults[0].rank}位〜${allResults[allResults.length - 1].rank}位 / Season: ${currentSeasonId}）`,
+      });
+    } catch (error) {
+      console.error('日刊ランキング取得エラー:', error);
+      setNikkanResult({ type: 'error', message: `取得失敗: ${error.message}` });
+    } finally {
+      setNikkanFetching(false);
+      setNikkanProgress('');
+    }
   };
 
   // TSVテキスト変更時のプレビュー生成
@@ -417,6 +596,62 @@ export default function AdminPage() {
             </div>
           </section>
 
+          {/* 日刊ランキング更新セクション */}
+          <section className="admin-section">
+            <h2 className="section-header">📰 日刊競馬POG ランキング更新</h2>
+            <div className="card">
+              <div className="card-body">
+                <p className="admin-desc">
+                  日刊競馬POGの指名馬ランキング（{NIKKAN_MAX_PAGES}ページ分）を取得し、Firestore に反映します。
+                </p>
+
+                <button
+                  className="btn btn-primary btn-lg"
+                  onClick={handleNikkanFetch}
+                  disabled={nikkanFetching}
+                >
+                  {nikkanFetching ? nikkanProgress || '取得中...' : 'ランキングを取得 & 更新'}
+                </button>
+
+                {nikkanPreview && (
+                  <div className="preview-area" style={{ marginTop: 'var(--space-md)' }}>
+                    <p className="preview-info">全{nikkanPreview.count}頭（上位5件）</p>
+                    <div className="preview-table-wrapper">
+                      <table className="preview-table">
+                        <thead>
+                          <tr>
+                            <th>順位</th>
+                            <th>馬名</th>
+                            <th>性別</th>
+                            <th>厩舎</th>
+                            <th>指名者数</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {nikkanPreview.top5.map((r) => (
+                            <tr key={r.regNum}>
+                              <td>{r.rank}</td>
+                              <td>{r.horseName}</td>
+                              <td>{r.gender}</td>
+                              <td>{r.trainer}</td>
+                              <td>{r.nominees}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {nikkanResult && (
+                  <div className={`upload-result ${nikkanResult.type}`}>
+                    {nikkanResult.type === 'success' ? '✅' : '❌'} {nikkanResult.message}
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+
           {/* CSVアップロードセクション */}
           <section className="admin-section">
             <h2 className="section-header">📂 馬データCSVアップロード</h2>
@@ -486,6 +721,11 @@ export default function AdminPage() {
                   <div className={`upload-result ${uploadResult.type}`}>
                     {uploadResult.type === 'success' ? '✅' : '❌'} {uploadResult.message}
                   </div>
+                )}
+
+                {/* 変更ログ */}
+                {changeLog && (uploadResult?.type === 'success') && (
+                  <ChangeLogView log={changeLog} />
                 )}
               </div>
             </div>
@@ -597,6 +837,121 @@ export default function AdminPage() {
         danger
       />
     </>
+  );
+}
+
+// ════════════════════════════════════════════════
+// 変更ログ表示コンポーネント
+// ════════════════════════════════════════════════
+function ChangeLogView({ log }) {
+  const [expanded, setExpanded] = useState(null); // 'added' | 'updated' | 'removed' | 'favs'
+  const toggle = (key) => setExpanded(expanded === key ? null : key);
+
+  const hasUpdates = log.updated.length > 0;
+  const hasAdded = log.added.length > 0;
+  const hasRemoved = log.removed.length > 0;
+  const hasFavs = log.favsSynced?.length > 0;
+
+  if (!hasUpdates && !hasAdded && !hasRemoved && !hasFavs) {
+    return <div className="changelog"><p className="changelog-empty">変更はありませんでした</p></div>;
+  }
+
+  return (
+    <div className="changelog">
+      <h4 className="changelog-title">変更ログ</h4>
+
+      {hasAdded && (
+        <div className="changelog-section">
+          <button className="changelog-toggle" onClick={() => toggle('added')}>
+            <span className="changelog-badge added">{log.added.length}</span>
+            新規追加
+            <span className="changelog-arrow">{expanded === 'added' ? '▼' : '▶'}</span>
+          </button>
+          {expanded === 'added' && (
+            <ul className="changelog-list">
+              {log.added.map((h) => (
+                <li key={h.regNum}><code>{h.regNum}</code> {h.horseName}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+
+      {hasUpdates && (
+        <div className="changelog-section">
+          <button className="changelog-toggle" onClick={() => toggle('updated')}>
+            <span className="changelog-badge updated">{log.updated.length}</span>
+            更新
+            <span className="changelog-arrow">{expanded === 'updated' ? '▼' : '▶'}</span>
+          </button>
+          {expanded === 'updated' && (
+            <table className="changelog-table">
+              <thead>
+                <tr><th>馬名</th><th>項目</th><th>変更前</th><th>変更後</th></tr>
+              </thead>
+              <tbody>
+                {log.updated.map((h) =>
+                  h.changes.map((c, i) => (
+                    <tr key={`${h.regNum}_${c.field}`}>
+                      {i === 0 && <td rowSpan={h.changes.length} className="changelog-horse">{h.horseName || h.regNum}</td>}
+                      <td className="changelog-field">{c.field}</td>
+                      <td className="changelog-from">{c.from || '（空）'}</td>
+                      <td className="changelog-to">{c.to || '（空）'}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
+        </div>
+      )}
+
+      {hasRemoved && (
+        <div className="changelog-section">
+          <button className="changelog-toggle" onClick={() => toggle('removed')}>
+            <span className="changelog-badge removed">{log.removed.length}</span>
+            削除（旧データのみ）
+            <span className="changelog-arrow">{expanded === 'removed' ? '▼' : '▶'}</span>
+          </button>
+          {expanded === 'removed' && (
+            <ul className="changelog-list">
+              {log.removed.map((h) => (
+                <li key={h.regNum}><code>{h.regNum}</code> {h.horseName}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+
+      {hasFavs && (
+        <div className="changelog-section">
+          <button className="changelog-toggle" onClick={() => toggle('favs')}>
+            <span className="changelog-badge favs">{log.favsSynced.length}</span>
+            お気に入り同期
+            <span className="changelog-arrow">{expanded === 'favs' ? '▼' : '▶'}</span>
+          </button>
+          {expanded === 'favs' && (
+            <table className="changelog-table">
+              <thead>
+                <tr><th>馬名</th><th>項目</th><th>変更前</th><th>変更後</th></tr>
+              </thead>
+              <tbody>
+                {log.favsSynced.map((f) =>
+                  f.changes.map((c, i) => (
+                    <tr key={`${f.horseName}_${c.field}`}>
+                      {i === 0 && <td rowSpan={f.changes.length} className="changelog-horse">{f.horseName}</td>}
+                      <td className="changelog-field">{c.field}</td>
+                      <td className="changelog-from">{c.from || '（空）'}</td>
+                      <td className="changelog-to">{c.to || '（空）'}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
