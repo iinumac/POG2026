@@ -673,3 +673,33 @@
   .v2-detail-block + .v2-detail-block { border-left: none; border-top: 1px solid var(--color-border-light); }
   .v2-submitted-actions { flex-direction: column; }
 }
+
+/* 日刊競馬POG 指名順位バッジ */
+.v2-nikkan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.v2-nikkan-top10 { background: linear-gradient(135deg, #ff6b35, #e04000); color: white; }
+.v2-nikkan-top30 { background: white; color: #e04000; border: 1px solid #e0400040; }
+.v2-nikkan-top100 { background: white; color: #2563eb; border: 1px solid #2563eb40; }
+.v2-nikkan-other { background: white; color: #333; border: 1px solid #33333330; }
+
+.v2-nikkan-sm {
+  font-size: 8px;
+  padding: 0 4px;
+  margin-left: 4px;
+}
+
+.v2-nikkan-detail {
+  font-size: 11px;
+  padding: 2px 8px;
+  margin-left: 8px;
+}

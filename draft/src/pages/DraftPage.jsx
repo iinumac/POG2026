@@ -8,12 +8,14 @@ import { useHorseSearch } from '../hooks/useHorseSearch';
 import { useDraftState } from '../hooks/useDraftState';
 import { useFavorites } from '../hooks/useFavorites';
 import { useAuth } from '../contexts/AuthContext';
+import { useNikkanRanking } from '../hooks/useNikkanRanking';
 import { Star, Search, Lock, Edit, Trophy, Horse, FileText, ExternalLink, Settings } from '../components/Icons';
 import './DraftPage.css';
 
 export default function DraftPage() {
   const navigate = useNavigate();
   const { isAdmin } = useAuth();
+  const { getRanking } = useNikkanRanking();
   const {
     results, loading: searchLoading, search,
     cacheReady, cacheCount, cacheLoading,
@@ -231,7 +233,10 @@ export default function DraftPage() {
                           {genderChar(fav) === 'f' ? '♀' : '♂'}
                         </span>
                         <div className="v2-shortlist-body">
-                          <div className="v2-shortlist-name">{horseName(fav)}</div>
+                          <div className="v2-shortlist-name">
+                            {horseName(fav)}
+                            <NikkanBadgeSmall ranking={getRanking(hid)} />
+                          </div>
                           <div className="v2-shortlist-ped">{fav.fatherName || '-'} × {fav.motherName || '-'}</div>
                           <div className="v2-shortlist-eval">
                             <span className="v2-shortlist-grades">
@@ -271,7 +276,10 @@ export default function DraftPage() {
                           {genderChar(h) === 'f' ? '♀' : '♂'}
                         </span>
                         <div className="v2-shortlist-body">
-                          <div className="v2-shortlist-name">{horseName(h)}</div>
+                          <div className="v2-shortlist-name">
+                            {horseName(h)}
+                            <NikkanBadgeSmall ranking={getRanking(hid)} />
+                          </div>
                           <div className="v2-shortlist-ped">{h.父 || h.fatherName || '-'} × {h.母 || h.motherName || '-'}</div>
                         </div>
                         {takenByMe ? <span className="v2-shortlist-status taken-mine">獲得済</span> :
@@ -306,6 +314,7 @@ export default function DraftPage() {
                           {genderChar(selectedHorse) === 'f' ? '♀' : '♂'}
                         </span>
                         {horseName(selectedHorse)}
+                        <NikkanBadgeDetail ranking={getRanking(hid)} />
                       </div>
                     </div>
                   </div>
@@ -433,6 +442,33 @@ export default function DraftPage() {
         </div>
       </ConfirmModal>
     </>
+  );
+}
+
+function nikkanTier(rank) {
+  if (rank <= 10) return 'top10';
+  if (rank <= 30) return 'top30';
+  if (rank <= 100) return 'top100';
+  return 'other';
+}
+
+// 日刊競馬POG 指名順位バッジ（リスト行用 — 小）
+function NikkanBadgeSmall({ ranking }) {
+  if (!ranking) return null;
+  return (
+    <span className={`v2-nikkan-badge v2-nikkan-sm v2-nikkan-${nikkanTier(ranking.rank)}`} title={`日刊競馬POG ${ranking.rank}位（${ranking.nominees}人指名）`}>
+      {ranking.rank}位/{ranking.nominees}人
+    </span>
+  );
+}
+
+// 日刊競馬POG 指名順位バッジ（詳細パネル用 — 大）
+function NikkanBadgeDetail({ ranking }) {
+  if (!ranking) return null;
+  return (
+    <span className={`v2-nikkan-badge v2-nikkan-detail v2-nikkan-${nikkanTier(ranking.rank)}`} title={`日刊競馬POG ${ranking.rank}位（${ranking.nominees}人指名）`}>
+      日刊{ranking.rank}位（{ranking.nominees}人）
+    </span>
   );
 }
 

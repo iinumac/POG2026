@@ -41,6 +41,36 @@
   background: #fff; border: 1px solid var(--color-border); border-radius: 10px;
 }
 
+.v2-fav-toolbar-filter {
+  margin-top: 0;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-color: var(--color-border-light, #e8e8e8);
+  background: #fafafa;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  gap: 8px;
+}
+
+.v2-fav-toolbar-filter .v2-fav-filters {
+  flex: 1;
+}
+
+.v2-fav-toolbar:has(+ .v2-fav-toolbar-filter) {
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.v2-fav-toolbar-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
 .v2-fav-search {
   flex: 1 1 260px; min-width: 220px; position: relative;
   display: flex; align-items: center; gap: 8px;
@@ -588,4 +618,64 @@
   .v2-fav-result-row { grid-template-columns: 1fr auto; gap: 6px; }
   .v2-fav-result-row .v2-fav-pedigree,
   .v2-fav-result-row .v2-fav-trainer { grid-column: 1 / -1; }
+}
+
+/* 日刊競馬POG 指名順位バッジ */
+.v2-nikkan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 1〜10位: オレンジグラデ + 白文字（従来通り） */
+.v2-nikkan-top10 {
+  background: linear-gradient(135deg, #ff6b35, #e04000);
+  color: white;
+}
+
+/* 11〜30位: 白地 + オレンジ文字 */
+.v2-nikkan-top30 {
+  background: white;
+  color: #e04000;
+  border: 1px solid #e0400040;
+}
+
+/* 31〜100位: 白地 + 青文字 */
+.v2-nikkan-top100 {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #2563eb40;
+}
+
+/* 101位以降: 白地 + 黒文字 */
+.v2-nikkan-other {
+  background: white;
+  color: #333;
+  border: 1px solid #33333330;
+}
+
+/* 日刊ソートボタン（admin only） */
+.v2-fav-filter-nikkan {
+  color: #e04000;
+}
+.v2-fav-filter-nikkan.active {
+  background: linear-gradient(135deg, #ff6b35, #e04000);
+  color: white;
+}
+
+.v2-nikkan-rank {
+  letter-spacing: -0.3px;
+}
+
+.v2-nikkan-nom {
+  opacity: 0.7;
+  font-weight: 500;
+  font-size: 8px;
 }
